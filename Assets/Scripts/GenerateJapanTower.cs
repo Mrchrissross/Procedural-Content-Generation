@@ -1,32 +1,35 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+
 
 public class GenerateJapanTower : MonoBehaviour
 {
-    public GameObject Empty;
-    public GameObject Base;
-    public GameObject Connector;
-    public GameObject Top;
+    [System.Serializable]
+    public class TowerParts
+    {
+        public GameObject Empty;
+        public GameObject Base;
+        public GameObject Connector;
+        public GameObject Top;
+    };
+
+    public TowerParts parts;
 
     private GameObject tempEmpty;
     private GameObject tempBase;
     private GameObject tempConnector;
     private GameObject tempTop;
 
-    public int levels = 2;
+    public int maxLevel = 2;
+    public int level;
 
-    public float height;
-
+    private float height;
     public float offset = 0.1f;
 
-    // Start is called before the first frame update
     void Start()
     {
         
     }
 
-    // Update is called once per frame
     void Update()
     {
         
@@ -34,7 +37,7 @@ public class GenerateJapanTower : MonoBehaviour
 
     public void Generate()
     {
-        levels = Random.Range(1, 7);
+        level = Random.Range(1, maxLevel + 1);
 
         GenerateBase();
         GenerateTop();
@@ -42,16 +45,19 @@ public class GenerateJapanTower : MonoBehaviour
 
     void GenerateBase()
     {
-        tempEmpty = Instantiate(Empty);
+        tempEmpty = Instantiate(parts.Empty);
         if (tempEmpty)
         {
+            if (GameObject.Find("JapanTower"))
+                DestroyImmediate(GameObject.Find("JapanTower").gameObject);
+
             tempEmpty.name = "JapanTower";
             tempEmpty.transform.position = new Vector3(0, 0, 0);
         }
         else
             Debug.LogError("An empty gameobject has not been set to empty on the game manager object.");
 
-        tempBase = Instantiate(Base);
+        tempBase = Instantiate(parts.Base);
         if (tempBase)
         {
             tempBase.name = "TowerBase";
@@ -65,9 +71,9 @@ public class GenerateJapanTower : MonoBehaviour
     {
         height = tempBase.GetComponent<MeshFilter>().sharedMesh.bounds.extents.z * 2;
 
-        for(int i = 0; i < levels; i++)
+        for(int i = 0; i < level; i++)
         {
-            tempConnector = Instantiate(Connector);
+            tempConnector = Instantiate(parts.Connector);
             if (tempConnector)
             {
                 tempConnector.name = "TowerConnector";
@@ -78,7 +84,7 @@ public class GenerateJapanTower : MonoBehaviour
             else
                 Debug.LogError("The tower gameobject has not been set on the game manager object.");
 
-            tempTop = Instantiate(Top);
+            tempTop = Instantiate(parts.Top);
             if (tempTop)
             {
                 float rand = Random.Range(0.5f, 2.0f);

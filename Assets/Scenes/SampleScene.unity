@@ -292,13 +292,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9821262c32aa7b4c80086739c130336, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Empty: {fileID: 4342367348263448807, guid: d823705c4dacd2a43bea48f7b04e019a, type: 3}
-  Base: {fileID: 343172239990662965, guid: c961f3ae908891540b1058fbe79511a2, type: 3}
-  Connector: {fileID: 3608578512328982508, guid: 26888a8cd5a3a914196659e743bdbe52,
-    type: 3}
-  Top: {fileID: 335050948742690138, guid: d6e40d68c9a14d04c829bfec57865d24, type: 3}
-  levels: 2
-  height: 4.662202
+  parts:
+    Empty: {fileID: 4342367348263448807, guid: d823705c4dacd2a43bea48f7b04e019a, type: 3}
+    Base: {fileID: 343172239990662965, guid: c961f3ae908891540b1058fbe79511a2, type: 3}
+    Connector: {fileID: 3608578512328982508, guid: 26888a8cd5a3a914196659e743bdbe52,
+      type: 3}
+    Top: {fileID: 335050948742690138, guid: d6e40d68c9a14d04c829bfec57865d24, type: 3}
+  maxLevel: 5
+  level: 4
   offset: 0.05
 --- !u!4 &1920091482
 Transform:
