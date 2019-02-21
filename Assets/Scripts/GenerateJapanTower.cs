@@ -25,15 +25,10 @@ public class GenerateJapanTower : MonoBehaviour
     private float height;
     public float offset = 0.1f;
 
-    void Start()
-    {
-        
-    }
-
-    void Update()
-    {
-        
-    }
+    //void Start()
+    //{
+        //Generate();
+    //}
 
     public void Generate()
     {
@@ -45,24 +40,21 @@ public class GenerateJapanTower : MonoBehaviour
 
     void GenerateBase()
     {
-        tempEmpty = Instantiate(parts.Empty);
+        tempEmpty = Instantiate(parts.Empty, this.transform);
         if (tempEmpty)
         {
-            if (GameObject.Find("JapanTower"))
-                DestroyImmediate(GameObject.Find("JapanTower").gameObject);
+            DestroyObject();
 
-            tempEmpty.name = "JapanTower";
+            this.name = "JapanTower";
+            tempEmpty.name = "Tower";
             tempEmpty.transform.position = new Vector3(0, 0, 0);
         }
         else
             Debug.LogError("An empty gameobject has not been set to empty on the game manager object.");
 
-        tempBase = Instantiate(parts.Base);
+        tempBase = Instantiate(parts.Base, tempEmpty.transform);
         if (tempBase)
-        {
             tempBase.name = "TowerBase";
-            tempBase.transform.parent = tempEmpty.transform;
-        }
         else
             Debug.LogError("The Base gameobject has not been set on the game manager object.");
     }
@@ -73,24 +65,22 @@ public class GenerateJapanTower : MonoBehaviour
 
         for(int i = 0; i < level; i++)
         {
-            tempConnector = Instantiate(parts.Connector);
+            tempConnector = Instantiate(parts.Connector, tempEmpty.transform);
             if (tempConnector)
             {
                 tempConnector.name = "TowerConnector";
-                tempConnector.transform.parent = tempEmpty.transform;
                 tempConnector.transform.localPosition = new Vector3(0, height, 0);
                 height += tempConnector.transform.GetChild(0).GetComponent<MeshFilter>().sharedMesh.bounds.extents.z * 3;
             }
             else
                 Debug.LogError("The tower gameobject has not been set on the game manager object.");
 
-            tempTop = Instantiate(parts.Top);
+            tempTop = Instantiate(parts.Top, tempEmpty.transform);
             if (tempTop)
             {
                 float rand = Random.Range(0.5f, 2.0f);
 
                 tempTop.name = "TowerTop";
-                tempTop.transform.parent = tempEmpty.transform;
                 tempTop.transform.localScale = new Vector3(rand, GenerateTopScale(rand), rand);
                 tempTop.transform.localPosition = new Vector3(0, height - offset, 0);
                 height += (tempTop.transform.GetChild(0).GetComponent<MeshFilter>().sharedMesh.bounds.extents.z * tempTop.transform.localScale.y);
@@ -113,5 +103,14 @@ public class GenerateJapanTower : MonoBehaviour
             scaleY = 0.5f;
 
         return scaleY;
+    }
+
+    public void DestroyObject()
+    {
+        if (transform.Find("Tower"))
+        {
+            DestroyImmediate(GameObject.Find("Tower").gameObject);
+            this.name = "SpawnJapanTower";
+        }
     }
 }

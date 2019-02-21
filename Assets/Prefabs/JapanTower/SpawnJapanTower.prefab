@@ -1,0 +1,54 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &8604458500887715561
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8604458500887715563}
+  - component: {fileID: 8604458500887715560}
+  m_Layer: 0
+  m_Name: SpawnJapanTower
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8604458500887715563
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8604458500887715561}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8604458500887715560
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8604458500887715561}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9821262c32aa7b4c80086739c130336, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  parts:
+    Empty: {fileID: 4342367348263448807, guid: d823705c4dacd2a43bea48f7b04e019a, type: 3}
+    Base: {fileID: 343172239990662965, guid: c961f3ae908891540b1058fbe79511a2, type: 3}
+    Connector: {fileID: 3608578512328982508, guid: 26888a8cd5a3a914196659e743bdbe52,
+      type: 3}
+    Top: {fileID: 335050948742690138, guid: d6e40d68c9a14d04c829bfec57865d24, type: 3}
+  maxLevel: 10
+  level: 4
+  offset: 0.05

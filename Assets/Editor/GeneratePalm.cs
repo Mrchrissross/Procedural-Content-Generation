@@ -3,14 +3,14 @@
 using UnityEngine;
 using UnityEditor;
 
-[CustomEditor(typeof(GenerateJapanTower))]
-public class GenerateTower : Editor
+[CustomEditor(typeof(GeneratePalmTree))]
+public class GeneratePalm : Editor
 {
     public override void OnInspectorGUI()
     {
         DrawDefaultInspector();
 
-        GenerateJapanTower myScript = (GenerateJapanTower)target;
+        GeneratePalmTree myScript = (GeneratePalmTree)target;
         if (GUILayout.Button("Generate"))
         {
             myScript.Generate();
