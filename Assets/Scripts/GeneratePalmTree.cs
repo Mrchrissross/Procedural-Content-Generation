@@ -8,28 +8,36 @@ public class GeneratePalmTree : MonoBehaviour
     {
         public GameObject Empty;
         public GameObject Trunk;
-        public GameObject Leaves;
+        public GameObject Leaf;
     };
 
     public TowerParts parts;
 
-    public bool extraLeaves;
+    public bool randomExtraTrunk;
+    public bool randomExtraLeaves;
 
     private GameObject tempEmpty;
     private GameObject tempTrunk;
-    private GameObject tempLeaves;
+    private GameObject tempLeaf;
 
     private List<GameObject> bones = new List<GameObject>();
     private List<GameObject> spawnPoints = new List<GameObject>();
 
     //void Start()
     //{
-    //  Generate();
+        //Generate();
     //}
 
     public void Generate()
     {
+        DestroyObject();
+
         GenerateBase();
+
+        int truFalse = Random.Range(0, 2);
+
+        if (truFalse == 0 && randomExtraTrunk)
+            GenerateBase();
     }
 
     void GenerateBase()
@@ -48,8 +56,6 @@ public class GeneratePalmTree : MonoBehaviour
         tempEmpty = Instantiate(parts.Empty, this.transform);
         if (tempEmpty)
         {
-            DestroyObject();
-
             this.name = "PalmTree";
             tempEmpty.name = "Palm";
             tempEmpty.transform.position = new Vector3(0, 0, 0);
@@ -105,23 +111,9 @@ public class GeneratePalmTree : MonoBehaviour
 
     void GenerateLeaves()
     {
-        tempLeaves = Instantiate(parts.Leaves);
-        if (tempLeaves)
-        {
-            float leavesSize = Random.Range(0.85f, 1.15f);
-            float leavesRotation = Random.Range(0.0f, 360.0f);
+        PositionLeaves(spawnPoints.Count - 1, new Vector2(0.85f, 1.15f));
 
-            tempLeaves.name = "Leaves";
-            tempLeaves.transform.localScale = new Vector3(leavesSize, leavesSize, leavesSize);
-            tempLeaves.transform.eulerAngles = new Vector3(0, leavesRotation, 0);
-
-            tempLeaves.transform.parent = spawnPoints[spawnPoints.Count - 1].transform;
-            tempLeaves.transform.localPosition = Vector3.zero;
-        }
-        else
-            Debug.LogError("The leaves prefab has not been set on " + this.name + " object.");
-
-        if(extraLeaves)
+        if (randomExtraLeaves)
         {
             for (int i = 0; i < 2; i++)
             {
@@ -130,32 +122,55 @@ public class GeneratePalmTree : MonoBehaviour
                 if (truFalse == 0)
                     continue;
 
-                tempLeaves = Instantiate(parts.Leaves);
-                if (tempLeaves)
-                {
-                    float leavesSize = Random.Range(0.5f, 0.8f);
-                    float leavesRotation = Random.Range(0.0f, 360.0f);
-
-                    tempLeaves.name = "Leaves";
-                    tempLeaves.transform.localScale = new Vector3(leavesSize, leavesSize, leavesSize);
-                    tempLeaves.transform.eulerAngles = new Vector3(0, leavesRotation, 0);
-
-                    tempLeaves.transform.parent = spawnPoints[i].transform;
-                    tempLeaves.transform.localPosition = Vector3.zero;
-                }
-                else
-                    Debug.LogError("The leaves prefab has not been set on " + this.name + " object.");
+                PositionLeaves(i, new Vector2(0.5f, 0.8f));
             }
         }
     }
 
+    void PositionLeaves(int spawnPoint, Vector2 scale)
+    {
+        tempEmpty = Instantiate(parts.Empty);
+        if (tempEmpty)
+        {
+            tempEmpty.name = "Leaves";
+            int numberOfLeaves = Random.Range(10, 14);
+
+            for (int i = 0; i < numberOfLeaves; i++)
+            {
+                tempLeaf = Instantiate(parts.Leaf);
+                if (tempLeaf)
+                {
+                    float leavesSize = Random.Range(scale.x, scale.y);
+                    float leavesRotationX = Random.Range(-25.0f, 35.0f);
+                    float leavesRotationY = Random.Range(0.0f, 360.0f);
+
+                    tempLeaf.name = "Leaves";
+                    tempLeaf.transform.localScale = new Vector3(leavesSize, leavesSize, leavesSize);
+                    tempLeaf.transform.eulerAngles = new Vector3(leavesRotationX, leavesRotationY, 0);
+
+                    tempLeaf.transform.parent = tempEmpty.transform;
+                    tempLeaf.transform.localPosition = Vector3.zero;
+                }
+                else
+                    Debug.LogError("The leaf prefab has not been set on " + this.name + " object.");
+            }
+
+            tempEmpty.transform.parent = spawnPoints[spawnPoint].transform;
+            tempEmpty.transform.localPosition = Vector3.zero;
+        }
+        else
+            Debug.LogError("The empty prefab has not been set on " + this.name + " object.");
+    }
+
     public void DestroyObject()
     {
-        if (transform.Find("Palm"))
+        for(int i = 0; i < 2; i++)
         {
-            DestroyImmediate(GameObject.Find("Palm").gameObject);
-            this.name = "SpawnPalmTree";
+            if (transform.Find("Palm"))
+                DestroyImmediate(transform.Find("Palm").gameObject);
         }
+
+        this.name = "SpawnPalmTree";
 
         bones.Clear();
         spawnPoints.Clear();

@@ -25,7 +25,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5783259635868536677}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.2818687, y: 3.4055152, z: 0.0014477372}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -46,6 +46,5 @@ MonoBehaviour:
   parts:
     Empty: {fileID: 4342367348263448807, guid: d823705c4dacd2a43bea48f7b04e019a, type: 3}
     Trunk: {fileID: 5643193735656854678, guid: ac0f47622e68c2941b4dbb1634410ba4, type: 3}
-    Leaves: {fileID: 3587829490007450721, guid: 36a47807b94701b4ea279a4d1be86924,
-      type: 3}
+    Leaf: {fileID: 5308957009128395007, guid: b0929ba4902ff7e438b6c2ff7e0b8031, type: 3}
   extraLeaves: 1
