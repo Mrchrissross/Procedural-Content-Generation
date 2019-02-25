@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEditor;
 
 [CustomEditor(typeof(GeneratePalmTree))]
-public class GeneratePalm : Editor
+public class Editor_GeneratePalm : Editor
 {
     public override void OnInspectorGUI()
     {

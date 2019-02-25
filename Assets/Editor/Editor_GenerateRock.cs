@@ -3,14 +3,14 @@
 using UnityEngine;
 using UnityEditor;
 
-[CustomEditor(typeof(GenerateJapanTower))]
-public class GenerateTower : Editor
+[CustomEditor(typeof(GenerateRock))]
+public class Editor_GenerateRock : Editor
 {
     public override void OnInspectorGUI()
     {
         DrawDefaultInspector();
 
-        GenerateJapanTower myScript = (GenerateJapanTower)target;
+        GenerateRock myScript = (GenerateRock)target;
         if (GUILayout.Button("Generate"))
         {
             myScript.Generate();
