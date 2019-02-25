@@ -58,7 +58,7 @@ public class GeneratePalmTree : MonoBehaviour
         {
             this.name = "PalmTree";
             tempEmpty.name = "Palm";
-            tempEmpty.transform.position = new Vector3(0, 0, 0);
+            tempEmpty.transform.localPosition = Vector3.zero;
         }
         else
             Debug.LogError("The empty prefab has not been set on " + this.name + " object.");

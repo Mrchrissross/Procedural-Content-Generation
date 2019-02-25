@@ -66,9 +66,9 @@ public class GenerateRock : MonoBehaviour
             modifier = Simplex.Noise.CalcPixel3D((int)(vertices[i].x * scale), (int)(vertices[i].y * scale), (int)(vertices[i].z * scale), frequency);
             modifier /= 256;
 
-            float truefudge = .99f + ((modifier - .5f) / amplification);
+            modifier = ((modifier - .5f) / amplification) + 0.99f;
 
-            vertices[i] = Vector3.Scale(vertices[i], (Vector3.one * truefudge));
+            vertices[i] = Vector3.Scale(vertices[i], (Vector3.one * modifier));
         }
     }
 

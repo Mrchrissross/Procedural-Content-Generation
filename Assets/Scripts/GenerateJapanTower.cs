@@ -47,7 +47,7 @@ public class GenerateJapanTower : MonoBehaviour
 
             this.name = "JapanTower";
             tempEmpty.name = "Tower";
-            tempEmpty.transform.position = new Vector3(0, 0, 0);
+            tempEmpty.transform.localPosition = new Vector3(0, 0, 0);
         }
         else
             Debug.LogError("An empty gameobject has not been set to empty on the game manager object.");
