@@ -48,4 +48,11 @@ MonoBehaviour:
   - {fileID: 2100000, guid: 16cb899133b39a4448fc240e666a0a36, type: 2}
   - {fileID: 2100000, guid: a164e8fa2a8247f4096d2083f7cf9d3a, type: 2}
   shapeMin: 2
-  shapeMax: 4
+  shapeMax: 5
+  lowestAmplification: 1
+  highestAmplification: 5
+  lowestFrequency: 0.3
+  highestFrequency: 1
+  amplification: 0
+  frequency: 0
+  shape: 0

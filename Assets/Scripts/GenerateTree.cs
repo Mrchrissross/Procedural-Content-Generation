@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using LibNoise;
 
 public class GenerateTree : MonoBehaviour
 {
@@ -13,10 +14,29 @@ public class GenerateTree : MonoBehaviour
 
     public TowerParts parts;
 
-    bool ExtraTrunk;
+    //How many levels are within the shape
+    [Range(2, 8)]
+    public int shapeMin = 2;
+    [Range(3, 8)]
+    public int shapeMax = 4;
 
-    public float minLeafSize = 0.8f;
-    public float maxLeafSize = 1.5f;
+    //The amplification of the noise
+    [Range(0.25f, 1.75f)]
+    public float lowestAmplification = 1.0f;
+    [Range(2.5f, 7.5f)]
+    public float highestAmplification = 5.0f;
+
+    //The frequency of the noise, the scale of the noise (how frequent there are hill / valleys)
+    [Range(0.05f, 0.5f)]
+    public float lowestFrequency = 0.3f;
+    [Range(0.5f, 1.5f)]
+    public float highestFrequency = 1.0f;
+
+    public float amplification;
+    public float frequency;
+    public int shape;
+
+    bool ExtraTrunk;
 
     GameObject body;
     Mesh mesh;
@@ -35,10 +55,10 @@ public class GenerateTree : MonoBehaviour
         GenerateBase();
 
         ExtraTrunk = true;
+
         for(int i = 0; i < 3; i++)
-        {
             GenerateBase();
-        }
+
         ExtraTrunk = false;
     }
 
@@ -115,10 +135,6 @@ public class GenerateTree : MonoBehaviour
     {
         GenerateLeafMesh();
 
-        GenerateLeafNoise();
-
-        SetLeafMesh();
-
         LeafResize();
     }
 
@@ -136,33 +152,36 @@ public class GenerateTree : MonoBehaviour
             return;
         }
 
-        mesh = GenerateIcoSphere.Create(2, 1.0f);
+        shape = Random.Range(shapeMin, shapeMax);
+
+        mesh = GenerateIcoSphere.Create(shape, 1.0f);
         vertices = mesh.vertices;
+
+        GenerateLeafNoise();
+
+        mesh.vertices = vertices;
+        mesh.RecalculateNormals();
+        body.GetComponent<MeshFilter>().sharedMesh = mesh;
     }
 
     void GenerateLeafNoise()
     {
-        float   modifier = 1,
-                scale = Random.Range(2.5f, 10.0f),
-                frequency = Random.Range(0.05f, 1.0f),
-                amplification = Random.Range(1.0f, 5.0f);
+        float   modifier,
+                lacu = 1.5f;
+
+        int     octaves = 1;
+
+        frequency = Random.Range(lowestFrequency, highestFrequency);
+        amplification = Random.Range(lowestAmplification, highestAmplification);
+
+        var noise = new LibNoise.Generator.RidgedMultifractal(frequency, lacu, octaves, Random.Range(0, 0xffffff), QualityMode.High);
 
         for (int i = 0; i < vertices.Length; i++)
         {
-            modifier = Simplex.Noise.CalcPixel3D((int)(vertices[i].x * scale), (int)(vertices[i].y * scale), (int)(vertices[i].z * scale), frequency);
-            modifier /= 256;
-
-            modifier = ((modifier - .5f) / amplification) + 0.99f;
-
+            modifier = (float)noise.GetValue(vertices[i].x, vertices[i].y, vertices[i].z);
+            modifier = ((modifier - 0.5f) / amplification) + 0.99f;
             vertices[i] = Vector3.Scale(vertices[i], (Vector3.one * modifier));
         }
-    }
-
-    void SetLeafMesh()
-    {
-        mesh.vertices = vertices;
-        mesh.RecalculateNormals();
-        body.GetComponent<MeshFilter>().sharedMesh = mesh;
     }
 
     void LeafResize()
@@ -189,11 +208,15 @@ public class GenerateTree : MonoBehaviour
 
     public void DestroyObject()
     {
-        for (int i = 0; i < 10; i++)
+        List<GameObject> objectsToDelete = new List<GameObject>();
+
+        for (int i = 0; i < transform.childCount; i++)
         {
-            if (transform.Find("Body"))
-                DestroyImmediate(transform.Find("Body").gameObject);
+            objectsToDelete.Add(transform.GetChild(i).gameObject);
         }
+
+        foreach (GameObject item in objectsToDelete)
+            DestroyImmediate(item);
 
         this.name = "SpawnTree";
 

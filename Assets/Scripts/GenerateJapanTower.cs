@@ -1,5 +1,5 @@
-﻿using UnityEngine;
-
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 public class GenerateJapanTower : MonoBehaviour
 {
@@ -25,11 +25,6 @@ public class GenerateJapanTower : MonoBehaviour
     private float height;
     public float offset = 0.1f;
 
-    //void Start()
-    //{
-        //Generate();
-    //}
-
     public void Generate()
     {
         level = Random.Range(1, maxLevel + 1);
@@ -40,10 +35,11 @@ public class GenerateJapanTower : MonoBehaviour
 
     void GenerateBase()
     {
+        DestroyObject();
+
         tempEmpty = Instantiate(parts.Empty, this.transform);
         if (tempEmpty)
         {
-            DestroyObject();
 
             this.name = "JapanTower";
             tempEmpty.name = "Tower";
@@ -107,10 +103,14 @@ public class GenerateJapanTower : MonoBehaviour
 
     public void DestroyObject()
     {
-        if (transform.Find("Tower"))
-        {
-            DestroyImmediate(GameObject.Find("Tower").gameObject);
-            this.name = "SpawnJapanTower";
-        }
+        List<GameObject> objectsToDelete = new List<GameObject>();
+
+        for (int i = 0; i < transform.childCount; i++)
+            objectsToDelete.Add(transform.GetChild(i).gameObject);
+
+        foreach (GameObject item in objectsToDelete)
+            DestroyImmediate(item);
+
+        this.name = "SpawnJapanTower";
     }
 }

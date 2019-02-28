@@ -164,11 +164,15 @@ public class GeneratePalmTree : MonoBehaviour
 
     public void DestroyObject()
     {
-        for(int i = 0; i < 2; i++)
+        List<GameObject> objectsToDelete = new List<GameObject>();
+
+        for (int i = 0; i < transform.childCount; i++)
         {
-            if (transform.Find("Palm"))
-                DestroyImmediate(transform.Find("Palm").gameObject);
+            objectsToDelete.Add(transform.GetChild(i).gameObject);
         }
+
+        foreach (GameObject item in objectsToDelete)
+            DestroyImmediate(item);
 
         this.name = "SpawnPalmTree";
 

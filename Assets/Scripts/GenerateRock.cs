@@ -1,4 +1,10 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
+
+using LibNoise;
+using LibNoise.Generator;
+using LibNoise.Operator;
+
 
 public class GenerateRock : MonoBehaviour
 {
@@ -12,10 +18,32 @@ public class GenerateRock : MonoBehaviour
     [Range(1, 8)]
     public int shapeMax = 4;
 
-    float   scale = 10,
-            frequency = 0.65f,
-            amplification = 3.1f;
-                    
+    //The amplification of the noise
+    [Range(0.25f, 1.75f)]
+    public float lowestAmplification = 1.0f;
+    [Range(2.5f, 7.5f)]
+    public float highestAmplification = 5.0f;
+
+    //The frequency of the noise, the scale of the noise (how frequent there are hill / valleys)
+    [Range(0.05f, 0.5f)]
+    public float lowestFrequency = 0.3f;
+    [Range(0.5f, 1.5f)]
+    public float highestFrequency = 1.0f;
+
+    public float amplification;
+    public float frequency;
+    public int shape;
+
+    //The lacunarity of the noise, basically, the amount of holes in it
+    float lacu = 1f;
+
+    //The number of octaves (the number of noise maps added together)
+    int octaves = 1;
+
+    //The persistance of the noise (the difference in value between each octave)
+    float persist = 1f;
+
+
 
     public void Generate()
     {
@@ -47,27 +75,28 @@ public class GenerateRock : MonoBehaviour
             return;
         }
 
-        int level = Random.Range(shapeMin, shapeMax + 1);
+        shape = Random.Range(shapeMin, shapeMax + 1);
 
-        mesh = GenerateIcoSphere.Create(level, 1.0f);
+        mesh = GenerateIcoSphere.Create(shape, 1.0f);
         vertices = mesh.vertices;
     }
 
     void GenerateNoise()
     {
-        float modifier = 1;
+        float modifier;
 
-        scale = Random.Range(2.5f, 10.0f);
-        frequency = Random.Range(0.05f, 1.0f);
+        frequency = Random.Range(0.3f, 1.0f);
         amplification = Random.Range(1.0f, 5.0f);
+
+        var noise = new LibNoise.Generator.Billow(frequency, lacu, persist, octaves, Random.Range(0, 0xffffff), QualityMode.High);
+        //var noise = new LibNoise.Generator.RidgedMultifractal(frequency, lacu, octaves, Random.Range(0, 0xffffff), QualityMode.High);
+        //var noise = new LibNoise.Generator.Voronoi(frequency, 0.5, Random.Range(0, 0xfffffff), true);
+        //var noise = new LibNoise.Generator.Perlin(frequency, lacu, persist, octaves, Random.Range(0, 0xffffff), QualityMode.High);
 
         for (int i = 0; i < vertices.Length; i++)
         {
-            modifier = Simplex.Noise.CalcPixel3D((int)(vertices[i].x * scale), (int)(vertices[i].y * scale), (int)(vertices[i].z * scale), frequency);
-            modifier /= 256;
-
-            modifier = ((modifier - .5f) / amplification) + 0.99f;
-
+            modifier = (float)noise.GetValue(vertices[i].x, vertices[i].y, vertices[i].z);
+            modifier = ((modifier - 0.5f) / amplification) + 0.99f;
             vertices[i] = Vector3.Scale(vertices[i], (Vector3.one * modifier));
         }
     }
@@ -99,7 +128,15 @@ public class GenerateRock : MonoBehaviour
 
     public void DestroyObject()
     {
-        DestroyImmediate(body);
+        List<GameObject> objectsToDelete = new List<GameObject>();
+
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            objectsToDelete.Add(transform.GetChild(i).gameObject);
+        }
+
+        foreach (GameObject item in objectsToDelete)
+            DestroyImmediate(item);
 
         this.name = "SpawnRock";
     }
