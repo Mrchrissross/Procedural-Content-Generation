@@ -43,4 +43,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ebd3c391c282714197e4fbd6a7b78f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  star: {fileID: 0}
+  star: {fileID: 4745808363185260567, guid: 948dc6e4b2ebf764e8eecae79657fb37, type: 3}
+  minDistance: 50
+  MaxDistance: 150
+  numberOfStars: 0
+  distance: 0
