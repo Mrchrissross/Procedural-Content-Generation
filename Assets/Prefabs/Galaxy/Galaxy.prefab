@@ -44,7 +44,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   star: {fileID: 4745808363185260567, guid: 948dc6e4b2ebf764e8eecae79657fb37, type: 3}
-  minDistance: 50
-  MaxDistance: 150
-  numberOfStars: 0
-  distance: 0
+  starMaterial: {fileID: 2100000, guid: 3dc1d6799ad2659419015128e6ac0a5a, type: 2}
+  rotationSpeed: 2
+  scaleSpeed: 0.05
+  maxScale: 2
+  minScale: 1
