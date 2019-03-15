@@ -1,10 +1,8 @@
-﻿// This is required to allow the buttons to appear on the Japan tower Generator.
-
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEditor;
 
 [CustomEditor(typeof(GenerateJapanTower))]
-public class Editor_GenerateTower : Editor
+public class Editor_GenerateJapanTower : Editor
 {
     public override void OnInspectorGUI()
     {

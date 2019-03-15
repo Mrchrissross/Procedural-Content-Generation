@@ -1,14 +1,14 @@
 ﻿using UnityEngine;
 using UnityEditor;
 
-[CustomEditor(typeof(GenerateRock))]
-public class Editor_GenerateRock : Editor
+[CustomEditor(typeof(GenerateStoneTower))]
+public class Editor_GenerateStoneTower : Editor
 {
     public override void OnInspectorGUI()
     {
         DrawDefaultInspector();
 
-        GenerateRock myScript = (GenerateRock)target;
+        GenerateStoneTower myScript = (GenerateStoneTower)target;
         if (GUILayout.Button("Generate"))
         {
             myScript.Generate();

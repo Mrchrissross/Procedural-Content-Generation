@@ -1,6 +1,4 @@
-﻿// This is required to allow the buttons to appear on the Japan tower Generator.
-
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEditor;
 
 [CustomEditor(typeof(GenerateTree))]

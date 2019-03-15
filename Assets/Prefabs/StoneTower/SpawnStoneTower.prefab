@@ -1,0 +1,71 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &7969245867891259675
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7969245867891259674}
+  - component: {fileID: 7969245867891259673}
+  m_Layer: 0
+  m_Name: SpawnStoneTower
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7969245867891259674
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7969245867891259675}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 4.620919, y: 4.620919, z: 4.620919}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7969245867891259673
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7969245867891259675}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49f239442607dee499cf44e5ee7b4a28, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  parts:
+    Base: {fileID: 3212509228080930405, guid: eb5ffd279dbba244b8c6b94c48cc48fa, type: 3}
+    Tower: {fileID: 1173223964359295997, guid: b0d367b4a8f9f0a438a0daf98f7be1e6, type: 3}
+    FloatingRock1: {fileID: 3449346268604046625, guid: 3e98361ff77d5044891a2b7882380034,
+      type: 3}
+    FloatingRock2: {fileID: 6663715769933864431, guid: f48199f0388a91342b4092bbba1125f2,
+      type: 3}
+    FloatingRock3: {fileID: 8122771792539840245, guid: 4be5b93f056ac894ebbebedfaf0f995a,
+      type: 3}
+    Galaxy: {fileID: 1670358526903031431, guid: 9187c7b4ae427e0408c875804adf7665,
+      type: 3}
+  floatingSideRocks:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  minSize: 3
+  maxSize: 5
+  minHeight: 0.5
+  maxHeight: 2.5
+  sidePulseSpeed: 0.1
+  orbsMinScale: 0.2
+  orbsMaxScale: 0.7
+  orbsRotationSpeed: 4
+  orbsScaleSpeed: 0.05

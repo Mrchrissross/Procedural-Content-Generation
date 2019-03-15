@@ -16,8 +16,8 @@ public class GenerateGalaxy : MonoBehaviour
 
     public float rotationSpeed = 2.0f;
     public float scaleSpeed = 0.05f;
-    public float maxScale = 2.0f;
     public float minScale = 1.0f;
+    public float maxScale = 2.0f;
     bool scaleDir;
 
     // Start is called before the first frame update
@@ -100,8 +100,12 @@ public class GenerateGalaxy : MonoBehaviour
         else if (transform.localScale.x < minScale)
             scaleDir = true;
 
+        float scaleModifier = 0.0f;
+        if (transform.parent)
+            scaleModifier = transform.parent.localScale.y;
+
         float scale = (!scaleDir) ? transform.localScale.x - (Time.deltaTime * scaleSpeed) : transform.localScale.x + (Time.deltaTime * scaleSpeed);
-        transform.localScale = new Vector3(scale, 1, scale);
+        transform.localScale = new Vector3(scale, scale * (scaleModifier * 2), scale);
     }
 
 }
