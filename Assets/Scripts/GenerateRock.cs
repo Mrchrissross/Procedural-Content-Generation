@@ -8,16 +8,30 @@ using LibNoise.Operator;
 
 public class GenerateRock : MonoBehaviour
 {
-    GameObject body;
+    [HideInInspector]
+    public GameObject body;
     Mesh mesh;
     Vector3[] vertices;
     public Material[] rockMaterials;
 
+    [Header("Poly Count: ", order = 0)]
     [Range(1, 8)]
-    public int shapeMin = 2;
+    public int _Min = 2;
     [Range(1, 8)]
-    public int shapeMax = 4;
+    public int _Max = 4;
 
+    [Header("Scales: ", order = 1)]
+    [Header("X: ", order = 2)]
+    public float _min = 0.25f;
+    public float _max = 1.0f;
+    [Header("Y: ", order = 3)]
+    public float min = 0.25f;
+    public float max = 1.0f;
+    [Header("Z: ", order = 4)]
+    public float Min = 0.25f;
+    public float Max = 1.0f;
+
+    [Header("Noise: ", order = 5)]
     //The amplification of the noise
     [Range(0.25f, 1.75f)]
     public float lowestAmplification = 1.0f;
@@ -75,7 +89,7 @@ public class GenerateRock : MonoBehaviour
             return;
         }
 
-        shape = Random.Range(shapeMin, shapeMax + 1);
+        shape = Random.Range(_Min, _Max + 1);
 
         mesh = GenerateIcoSphere.Create(shape, 1.0f);
         vertices = mesh.vertices;
@@ -110,9 +124,9 @@ public class GenerateRock : MonoBehaviour
 
     void Resize()
     {
-        float x = Random.Range(0.25f, 1.0f);
-        float y = Random.Range(0.25f, 1.0f);
-        float z = Random.Range(0.25f, 1.0f);
+        float x = Random.Range(_min, _max);
+        float y = Random.Range(min, max);
+        float z = Random.Range(Min, Max);
 
         body.transform.localScale = new Vector3(x, y, z);
 

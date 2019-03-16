@@ -12,17 +12,21 @@ public class GenerateStoneTower : MonoBehaviour
         public GameObject FloatingRock2;
         public GameObject FloatingRock3;
         public GameObject Galaxy;
+        public GameObject Rock;
     };
 
     public TowerParts parts;
 
     private GameObject tempBase;
     private GameObject TempTower;
-    private GameObject TempRock;
     private GameObject TempGalaxy;
 
+    Transform flyingRockHolder;
+    Transform floatingRockHolder;
+
+    public List<GameObject> flyingRocks = new List<GameObject>();
+    public List<float> flyingRocksSpeeds = new List<float>();
     public List<GameObject> floatingSideRocks = new List<GameObject>();
-    bool floatingSideRocksChecked;
 
     [Header("Tower")]
     public float minSize = 3.0f;
@@ -34,9 +38,18 @@ public class GenerateStoneTower : MonoBehaviour
     [Header("Orbs")]
     public float orbsMinScale = 1.0f;
     public float orbsMaxScale = 2.0f;
-    public float orbsRotationSpeed = 2.0f;
+    public float orbsRotationSpeed = 4.0f;
     public float orbsScaleSpeed = 0.05f;
     private GenerateGalaxy generateGalaxy;
+
+    [Header("Flying Rocks")]
+    public int minimumCount = 4;
+    public int maximumCount = 10;
+    public float minimumRotationSpeed = 0.5f;
+    public float maximumRotationSpeed = 7.0f;
+    public float rocksRotationSpeed = 4.0f;
+    [Range(5.0f, 15.0f)]
+    public float distance = 15.0f;
 
     bool sideRocksExpand;
 
@@ -44,12 +57,26 @@ public class GenerateStoneTower : MonoBehaviour
     {
         if(transform.Find("tower"))
         {
-            floatingSideRocks.Clear();
+            flyingRockHolder = transform.Find("tower").Find("FlyingRockHolders");
+            floatingRockHolder = transform.Find("tower").Find("FloatingRockHolders");
 
-            foreach (Transform child in transform.Find("tower").Find("FloatingRockHolders"))
+            floatingSideRocks.Clear();
+            flyingRocks.Clear();
+
+            foreach (Transform child in floatingRockHolder)
             {
                 if (child.childCount > 0)
                     floatingSideRocks.Add(child.GetChild(0).gameObject);
+            }
+
+            foreach (Transform child in flyingRockHolder)
+            {
+                flyingRocks.Add(child.gameObject);
+
+                float rotationSpeed = Random.Range(minimumRotationSpeed, maximumRotationSpeed);
+                bool direction = (Random.value > 0.5f);
+                rotationSpeed = (direction) ? rotationSpeed : -rotationSpeed;
+                flyingRocksSpeeds.Add(rotationSpeed);
             }
 
             generateGalaxy = transform.Find("tower").Find("SpawnGalaxy").GetChild(0).GetComponent<GenerateGalaxy>();
@@ -59,6 +86,8 @@ public class GenerateStoneTower : MonoBehaviour
     public void Generate()
     {
         GenerateBase();
+        GenerateSideRocks();
+        GenerateFlyingRocks();
     }
 
     void GenerateBase()
@@ -110,19 +139,22 @@ public class GenerateStoneTower : MonoBehaviour
             DestroyObject();
             return;
         }
+    }
 
-        Transform floatingRockHolder = transform.Find("tower").Find("FloatingRockHolders");
+    void GenerateSideRocks()
+    {
+        floatingRockHolder = transform.Find("tower").Find("FloatingRockHolders");
 
         foreach (Transform child in floatingRockHolder)
         {
             bool spawn = (Random.value > 0.5f);
 
-            if(spawn)
+            if (spawn)
             {
                 GameObject rock = null;
                 int rockPrefab = Random.Range(1, 4);
 
-                switch(rockPrefab)
+                switch (rockPrefab)
                 {
                     case 1:
                         rock = Instantiate(parts.FloatingRock1, child);
@@ -157,8 +189,63 @@ public class GenerateStoneTower : MonoBehaviour
         }
     }
 
+    void GenerateFlyingRocks()
+    {
+        int count = Random.Range(minimumCount, maximumCount);
+
+        flyingRockHolder = transform.Find("tower").Find("FlyingRockHolders");
+
+        for(int i = 0; i < count; i++)
+        {
+            float distanceX = Random.Range(-distance, distance);
+            float distanceY = Random.Range(-distance, distance);
+            float height = Random.Range(-5.0f, 2.0f);
+
+            if (distanceX < 10.0f && distanceX < -10.0f)
+            {
+                if(distanceX < 0)
+                    distanceX = Random.Range(-distance, -3.0f);
+                else
+                    distanceX = Random.Range(3.0f, distance);
+            }
+
+            if (distanceY < 10.0f && distanceY < -10.0f)
+            {
+                if (distanceY < 0)
+                    distanceY = Random.Range(-distance, -10.0f);
+                else
+                    distanceY = Random.Range(10.0f, distance);
+            }
+
+            GameObject rock = null;
+
+            rock = Instantiate(parts.Rock, flyingRockHolder);
+
+            rock.transform.localPosition = new Vector3(distanceX, distanceY, height);
+
+            // Change the maximum x scale
+            rock.GetComponent<GenerateRock>()._max = 0.55f;
+            // Change the maximum z scale
+            rock.GetComponent<GenerateRock>().Max = 0.55f;
+
+            rock.GetComponent<GenerateRock>().Generate();
+
+            rock.GetComponent<GenerateRock>().body.GetComponent<MeshRenderer>().material = TempTower.transform.Find("Tower").GetComponent<MeshRenderer>().sharedMaterials[1];
+
+            float rotationSpeed = Random.Range(minimumRotationSpeed, maximumRotationSpeed);
+            bool direction = (Random.value > 0.5f);
+            rotationSpeed = (direction) ? rotationSpeed : -rotationSpeed;
+            flyingRocksSpeeds.Add(rotationSpeed);
+
+            flyingRocks.Add(rock);
+        }
+    }
+
     private void Update()
     {
+        if (transform.childCount < 1)
+            return;
+
         if(generateGalaxy)
         {
             if(generateGalaxy.minScale != orbsMinScale)
@@ -183,6 +270,25 @@ public class GenerateStoneTower : MonoBehaviour
             else
                 rock.transform.localPosition = new Vector3(rock.transform.localPosition.x + (Time.deltaTime * sidePulseSpeed), 0, 0);
         }
+
+        for(int i = 0; i < flyingRocks.Count; i++)
+        {
+            if (flyingRocks[i].transform.GetChild(0).localEulerAngles.z > 360.0f)
+                flyingRocks[i].transform.GetChild(0).localEulerAngles = Vector3.zero;
+
+            flyingRocks[i].transform.GetChild(0).localEulerAngles = new Vector3(0, 0, flyingRocks[i].transform.GetChild(0).localEulerAngles.z + (Time.deltaTime * flyingRocksSpeeds[i]));
+        }
+
+        flyingRockHolder.localEulerAngles = new Vector3(
+                        flyingRockHolder.localEulerAngles.x, 
+                        flyingRockHolder.localEulerAngles.y,
+                        flyingRockHolder.localEulerAngles.z + Time.deltaTime * rocksRotationSpeed);
+
+        if(flyingRockHolder.localEulerAngles.y < 360.0f)
+            flyingRockHolder.localEulerAngles = new Vector3(
+                        flyingRockHolder.localEulerAngles.x,
+                        flyingRockHolder.localEulerAngles.y,
+                        flyingRockHolder.localEulerAngles.z - 360.0f);
     }
 
     public void DestroyObject()
@@ -196,6 +302,8 @@ public class GenerateStoneTower : MonoBehaviour
             DestroyImmediate(item);
 
         floatingSideRocks.Clear();
+        flyingRocks.Clear();
+        flyingRocksSpeeds.Clear();
 
         this.name = "SpawnStoneTower";
     }
