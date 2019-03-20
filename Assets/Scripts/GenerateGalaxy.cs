@@ -8,9 +8,6 @@ public class GenerateGalaxy : MonoBehaviour
     private GameObject tempStar;
     private List<GameObject> stars = new List<GameObject>();
 
-    float minDistance = 5.0f;
-    float MaxDistance = 10.0f;
-
     int numberOfStars;
     float distance;
 
@@ -24,27 +21,6 @@ public class GenerateGalaxy : MonoBehaviour
     void Start()
     {
         spawnStarsSpiral();
-
-        //numberOfStars = Random.Range(100, 300);
-        //distance = Random.Range(minDistance, MaxDistance);
-
-        //for (int i = 0; i < numberOfStars; i++)
-        //{
-        //    tempStar = Instantiate(star, transform);
-
-        //    var rd = Random.value * 360;
-        //    var rnd = Random.value * distance;
-
-        //    //The x is just sin(angle) * distance
-        //    var x = Mathf.Sin(rd * Mathf.Deg2Rad) * rnd;
-        //    //The z is just cos(angle) * distance             
-        //    var z = Mathf.Cos(rd * Mathf.Deg2Rad) * rnd;
-        //    //Set the star’s position
-        //    tempStar.transform.position = new Vector3(x, 0, z);
-
-        //    //spawnStarsSpiral();
-        //    stars.Add(tempStar);
-        //}
     }
 
     void spawnStarsSpiral()
