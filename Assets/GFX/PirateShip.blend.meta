@@ -43,6 +43,7 @@ ModelImporter:
     100074: AnchorHole
     100076: Door
     100078: Window
+    100080: Oar
     400000: Cube
     400002: Cube_001
     400004: Cube_002
@@ -83,6 +84,7 @@ ModelImporter:
     400074: AnchorHole
     400076: Door
     400078: Window
+    400080: Oar
     2100000: unnamed
     2100002: Material
     2100004: WheelBase
@@ -102,6 +104,11 @@ ModelImporter:
     2100032: BackRail
     2100034: Door
     2100036: Anchor
+    2100038: Oar
+    2100040: BackWindowsWood
+    2100042: BackWindowsPillar
+    2100044: BackWindowsRim
+    2100046: BackwindowsLight
     2300000: Cube
     2300002: Cube_001
     2300004: Cube_002
@@ -141,6 +148,7 @@ ModelImporter:
     2300072: AnchorHole
     2300074: Door
     2300076: Window
+    2300078: Oar
     3300000: Cube
     3300002: Cube_001
     3300004: Cube_002
@@ -180,6 +188,7 @@ ModelImporter:
     3300072: AnchorHole
     3300074: Door
     3300076: Window
+    3300078: Oar
     4300000: Cylinder_002
     4300002: Cylinder_001
     4300004: Cube_005
@@ -219,6 +228,7 @@ ModelImporter:
     4300072: AnchorHole
     4300074: Anchor
     4300076: Door
+    4300078: Oar
     7400000: Default Take
     9500000: //RootNode
   externalObjects: {}
