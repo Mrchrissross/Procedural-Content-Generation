@@ -45,6 +45,9 @@ ModelImporter:
     100078: Window
     100080: Oar
     100082: BackWindows
+    100084: Jib
+    100086: SmallerMast_001
+    100088: Spinakker
     400000: Cube
     400002: Cube_001
     400004: Cube_002
@@ -87,6 +90,9 @@ ModelImporter:
     400078: Window
     400080: Oar
     400082: BackWindows
+    400084: Jib
+    400086: SmallerMast_001
+    400088: Spinakker
     2100000: unnamed
     2100002: Material
     2100004: WheelBase
@@ -152,6 +158,9 @@ ModelImporter:
     2300076: Window
     2300078: Oar
     2300080: BackWindows
+    2300082: Jib
+    2300084: SmallerMast_001
+    2300086: Spinakker
     3300000: Cube
     3300002: Cube_001
     3300004: Cube_002
@@ -193,6 +202,9 @@ ModelImporter:
     3300076: Window
     3300078: Oar
     3300080: BackWindows
+    3300082: Jib
+    3300084: SmallerMast_001
+    3300086: Spinakker
     4300000: Cylinder_002
     4300002: Cylinder_001
     4300004: Cube_005
@@ -234,6 +246,9 @@ ModelImporter:
     4300076: Door
     4300078: Oar
     4300080: BackWindows
+    4300082: Spinakker
+    4300084: Jib
+    4300086: SmallerMast_001
     7400000: Default Take
     9500000: //RootNode
   externalObjects: {}
