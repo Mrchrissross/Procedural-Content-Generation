@@ -17,11 +17,7 @@ public class GeneratePirateShip : MonoBehaviour
         public GameObject SmallMast;
         public GameObject LargeMast;
         [Header("Colours")]
-        public Material colour1;
-        public Material colour2;
-        public Material colour3;
-        public Material colour4;
-        public Material colour5;
+        public Material SailMaterial;
     };
 
     public PirateShipParts parts;
@@ -47,6 +43,11 @@ public class GeneratePirateShip : MonoBehaviour
             GenerateStairs();
 
         GenerateLamps();
+
+        GenerateWindows();
+
+        float scale = Random.Range(0.8f, 1.5f);
+        transform.localScale = new Vector3(scale, scale, scale);
     }
 
     void GenerateShip()
@@ -129,21 +130,20 @@ public class GeneratePirateShip : MonoBehaviour
     void GenerateMast()
     {
         float smallerMastSize = Random.Range(0.8f, 1.2f);
-        int mastColour = Random.Range(0, 5);
+        Color randomColour = new Color(Random.Range(0.0f, 1.0f), Random.Range(0.0f, 1.0f), Random.Range(0.0f, 1.0f));
 
-        if(boat)
+        if (boat)
         {
             smallMast = Instantiate(parts.SmallMast, transform);
             if (smallMast)
             {
                 float boatMastSize = Random.Range(1.0f, 1.25f);
 
-                this.name = "PirateShip";
                 smallMast.name = "Mast";
                 smallMast.transform.localPosition = Vector3.zero;
                 smallMast.transform.localScale = new Vector3(boatMastSize * 1.1f, boatMastSize, 1.0f);
 
-                ChangeSailColour(mastColour, smallMast.transform.GetChild(0).GetChild(0).gameObject);
+                ChangeSailColour(randomColour, smallMast.transform.GetChild(0).GetChild(0).gameObject);
             }
             else
             {
@@ -162,13 +162,12 @@ public class GeneratePirateShip : MonoBehaviour
             smallMast = Instantiate(parts.SmallMast);
             if (smallMast)
             {
-                this.name = "PirateShip";
                 smallMast.name = "Mast";
                 smallMast.transform.parent = transform.GetChild(0).GetChild(0).Find("SpawnSmallMast");
                 smallMast.transform.localPosition = Vector3.zero;
                 smallMast.transform.localScale = new Vector3(smallerMastSize, smallerMastSize, 1.0f);
 
-                ChangeSailColour(mastColour, smallMast.transform.GetChild(0).GetChild(0).gameObject);
+                ChangeSailColour(randomColour, smallMast.transform.GetChild(0).GetChild(0).gameObject);
             }
             else
             {
@@ -185,7 +184,6 @@ public class GeneratePirateShip : MonoBehaviour
             largeMast = Instantiate(parts.LargeMast);
             if (largeMast)
             {
-                this.name = "PirateShip";
                 largeMast.name = "Mast";
                 largeMast.transform.parent = transform.GetChild(0).GetChild(0).Find("SpawnLargeMast");
                 largeMast.transform.localPosition = Vector3.zero;
@@ -194,9 +192,9 @@ public class GeneratePirateShip : MonoBehaviour
                 GameObject jib = front.transform.GetChild(0).Find("Jib").gameObject;
                 GameObject spinakker = front.transform.GetChild(0).Find("Spinakker").gameObject;
 
-                ChangeSailColour(mastColour, largeMast.transform.GetChild(0).GetChild(0).gameObject);
-                ChangeSailColour(mastColour, jib);
-                ChangeSailColour(mastColour, spinakker);
+                ChangeSailColour(randomColour, largeMast.transform.GetChild(0).GetChild(0).gameObject);
+                ChangeSailColour(randomColour, jib);
+                ChangeSailColour(randomColour, spinakker);
 
                 if (!smallerMast)
                 {
@@ -232,7 +230,6 @@ public class GeneratePirateShip : MonoBehaviour
             largeMast = Instantiate(parts.SmallMast);
             if (largeMast)
             {
-                this.name = "PirateShip";
                 largeMast.name = "Mast";
                 largeMast.transform.parent = transform.GetChild(0).GetChild(0).Find("SpawnLargeMast");
                 largeMast.transform.localPosition = Vector3.zero;
@@ -241,9 +238,9 @@ public class GeneratePirateShip : MonoBehaviour
                 GameObject jib = front.transform.GetChild(0).Find("Jib").gameObject;
                 GameObject spinakker = front.transform.GetChild(0).Find("Spinakker").gameObject;
 
-                ChangeSailColour(mastColour, largeMast.transform.GetChild(0).GetChild(0).gameObject);
-                ChangeSailColour(mastColour, jib);
-                ChangeSailColour(mastColour, spinakker);
+                ChangeSailColour(randomColour, largeMast.transform.GetChild(0).GetChild(0).gameObject);
+                ChangeSailColour(randomColour, jib);
+                ChangeSailColour(randomColour, spinakker);
                 if (!smallerMast)
                 {
                     DestroyImmediate(jib);
@@ -274,14 +271,13 @@ public class GeneratePirateShip : MonoBehaviour
             largeMast = Instantiate(parts.LargeMast);
             if (largeMast)
             {
-                this.name = "PirateShip";
                 largeMast.name = "Mast";
-                largeMast.transform.localPosition = Vector3.zero;
                 largeMast.transform.parent = transform.GetChild(0).GetChild(0).Find("SpawnLargeMast");
+                largeMast.transform.localPosition = Vector3.zero;
                 largeMast.transform.localScale = new Vector3(size, size, 1.0f);
-                largeMast.transform.localPosition = new Vector3(largeMast.transform.localPosition.x, largeMast.transform.localPosition.y + 0.3f, largeMast.transform.localPosition.z);
+                largeMast.transform.localPosition = new Vector3(largeMast.transform.localPosition.x, largeMast.transform.localPosition.y + 1.0f, largeMast.transform.localPosition.z);
 
-                ChangeSailColour(mastColour, largeMast.transform.GetChild(0).GetChild(0).gameObject);
+                ChangeSailColour(randomColour, largeMast.transform.GetChild(0).GetChild(0).gameObject);
             }
             else
             {
@@ -292,26 +288,13 @@ public class GeneratePirateShip : MonoBehaviour
         }
     }
 
-    void ChangeSailColour(int colour, GameObject sail)
+    void ChangeSailColour(Color randomColour, GameObject sail)
     {
-        switch(colour)
-        {
-            case 1:
-                sail.GetComponent<MeshRenderer>().material = parts.colour1;
-                break;
-            case 2:
-                sail.GetComponent<MeshRenderer>().material = parts.colour2;
-                break;
-            case 3:
-                sail.GetComponent<MeshRenderer>().material = parts.colour3;
-                break;
-            case 4:
-                sail.GetComponent<MeshRenderer>().material = parts.colour4;
-                break;
-            case 5:
-                sail.GetComponent<MeshRenderer>().material = parts.colour5;
-                break;
-        }
+        parts.SailMaterial = new Material(Shader.Find("Specular"));
+        parts.SailMaterial.color = randomColour;
+        parts.SailMaterial.name = "SailMaterial";
+
+        sail.GetComponent<MeshRenderer>().material = parts.SailMaterial;
     }
 
     void GenerateStairs()
@@ -339,6 +322,33 @@ public class GeneratePirateShip : MonoBehaviour
 
         if (!extraBackLights)
             DestroyImmediate(back.transform.GetChild(0).Find("Lamps").GetChild(1).gameObject);
+    }
+
+    void GenerateWindows()
+    {
+        if(boat)
+        {
+            for (int i = 0; i < front.transform.GetChild(0).Find("Windows").childCount; i++)
+                DestroyImmediate(front.transform.GetChild(0).Find("Windows").GetChild(i).gameObject);
+            for (int i = 0; i < back.transform.GetChild(0).Find("Windows").childCount; i++)
+                DestroyImmediate(back.transform.GetChild(0).Find("Windows").GetChild(i).gameObject);
+        }
+
+        for (int i = 0; i < front.transform.GetChild(0).Find("Windows").childCount; i++)
+        {
+            bool despawn = (Random.value > 0.5f);
+
+            if (despawn)
+                DestroyImmediate(front.transform.GetChild(0).Find("Windows").GetChild(i).gameObject);
+        }
+
+        for (int i = 0; i < back.transform.GetChild(0).Find("Windows").childCount; i++)
+        {
+            bool despawn = (Random.value > 0.5f);
+
+            if (despawn)
+                DestroyImmediate(back.transform.GetChild(0).Find("Windows").GetChild(i).gameObject);
+        }
     }
 
     public void DestroyObject()

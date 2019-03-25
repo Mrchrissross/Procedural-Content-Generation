@@ -263,7 +263,35 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1414065634
+--- !u!21 &618697456
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: SailMaterial
+  m_Shader: {fileID: 3, guid: 0000000000000000f000000000000000, type: 0}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - _Shininess: 0.078125
+    m_Colors:
+    - _Color: {r: 0.19485128, g: 0.9005915, b: 0.4379328, a: 1}
+    - _SpecColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+--- !u!1 &1147934206
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -271,8 +299,8 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1414065636}
-  - component: {fileID: 1414065635}
+  - component: {fileID: 1147934208}
+  - component: {fileID: 1147934207}
   m_Layer: 0
   m_Name: SpawnPirateShip
   m_TagString: Untagged
@@ -280,13 +308,13 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1414065635
+--- !u!114 &1147934207
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1414065634}
+  m_GameObject: {fileID: 1147934206}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9502f032b32ff5d4492fab81e3a55493, type: 3}
@@ -305,21 +333,17 @@ MonoBehaviour:
       type: 3}
     LargeMast: {fileID: 5666916464084842028, guid: 68f7bd266d6e46247a474faf68737593,
       type: 3}
-    colour1: {fileID: 2100000, guid: 84da4ff23978d6d48bd66cdad0b4e5b2, type: 2}
-    colour2: {fileID: 2100000, guid: 69e5728d0d95d1f4aa7c04f62f2b805b, type: 2}
-    colour3: {fileID: 2100000, guid: d35e6c0d88663b64fa82c7171144a897, type: 2}
-    colour4: {fileID: 2100000, guid: 7d3359fc19115ce4a85baf06bba47a8b, type: 2}
-    colour5: {fileID: 2100000, guid: d49fdf0029468194b9e09cf30bac0692, type: 2}
---- !u!4 &1414065636
+    SailMaterial: {fileID: 618697456}
+--- !u!4 &1147934208
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1414065634}
+  m_GameObject: {fileID: 1147934206}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.4026265, y: 1.4026265, z: 1.4026265}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 2
