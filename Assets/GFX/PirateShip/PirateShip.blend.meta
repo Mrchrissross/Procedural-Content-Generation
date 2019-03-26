@@ -251,7 +251,117 @@ ModelImporter:
     4300086: SmallerMast_001
     7400000: Default Take
     9500000: //RootNode
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Anchor
+    second: {fileID: 2100000, guid: 9466a417a850411499a3fe4d1d523809, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: BackRail
+    second: {fileID: 2100000, guid: 447b3f74d4774ea4e964d0164338511c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: BackWindowsPillar
+    second: {fileID: 2100000, guid: 1883540036c02df4087e6f73252532f3, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: BackWindowsRim
+    second: {fileID: 2100000, guid: 782964462f898cf4f9d15831f846c0a2, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: BackWindowsWood
+    second: {fileID: 2100000, guid: a7c4d298934e0944b926856cef3e4195, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: BackwindowsLight
+    second: {fileID: 2100000, guid: 2e3a7aa1f463bf84f8155fb855c18b7c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Base
+    second: {fileID: 2100000, guid: 64c55725e17502644b712977a9b08bb9, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Blocks
+    second: {fileID: 2100000, guid: e053255975c80b045a11b9b8a5a3e4c8, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Cloth
+    second: {fileID: 2100000, guid: 679a0d8d8a8f83349b258846279c052e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Door
+    second: {fileID: 2100000, guid: 089634f7cd56a5b45bdf8ac2a2339bd6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: FrontPole
+    second: {fileID: 2100000, guid: f95fb9977942bbd48adc62687cbf8b18, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Handles
+    second: {fileID: 2100000, guid: 51a2459fe7940e04eb1bbb6765d123a9, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Lamp
+    second: {fileID: 2100000, guid: 6f2977b9d96c36f4abda5f2c5c819024, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: LampBottom
+    second: {fileID: 2100000, guid: b60882271e9abb24ca4a7a2602e6b2e9, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: LampLight
+    second: {fileID: 2100000, guid: 8f733171bc676e2469fbcc7a9db5eb2e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: LampTop
+    second: {fileID: 2100000, guid: 50de03ae8249d5f4985f640f930beb93, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MastColour
+    second: {fileID: 2100000, guid: c291b628c47930946b0242d4e9de8e71, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Oar
+    second: {fileID: 2100000, guid: 18b3f8a54212a764991dd11a4450a98a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Rim
+    second: {fileID: 2100000, guid: efa282cbe07c8db4f9a28b6783f977e4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Stairs
+    second: {fileID: 2100000, guid: 5bc70fdf0d65f7841b034301468209df, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wheel
+    second: {fileID: 2100000, guid: 2ea569151a065144ba1a7e1b29476311, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: WheelBase
+    second: {fileID: 2100000, guid: 13dabf9af693c2d4d9d1cdd03bbb451d, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
