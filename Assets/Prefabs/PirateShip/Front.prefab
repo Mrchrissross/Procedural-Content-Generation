@@ -121,7 +121,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 679a0d8d8a8f83349b258846279c052e, type: 2}
+  - {fileID: 2100020, guid: 79cfea6f50700794cb25cab1878c7826, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -198,7 +198,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 679a0d8d8a8f83349b258846279c052e, type: 2}
+  - {fileID: 2100020, guid: 79cfea6f50700794cb25cab1878c7826, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -369,7 +369,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: efa282cbe07c8db4f9a28b6783f977e4, type: 2}
+  - {fileID: 2100012, guid: 79cfea6f50700794cb25cab1878c7826, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -450,8 +450,8 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 51a2459fe7940e04eb1bbb6765d123a9, type: 2}
-  - {fileID: 2100000, guid: 089634f7cd56a5b45bdf8ac2a2339bd6, type: 2}
+  - {fileID: 2100036, guid: 79cfea6f50700794cb25cab1878c7826, type: 3}
+  - {fileID: 2100016, guid: 79cfea6f50700794cb25cab1878c7826, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -532,8 +532,8 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: c291b628c47930946b0242d4e9de8e71, type: 2}
-  - {fileID: 2100000, guid: 089634f7cd56a5b45bdf8ac2a2339bd6, type: 2}
+  - {fileID: 2100018, guid: 79cfea6f50700794cb25cab1878c7826, type: 3}
+  - {fileID: 2100034, guid: 79cfea6f50700794cb25cab1878c7826, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -614,7 +614,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: e053255975c80b045a11b9b8a5a3e4c8, type: 2}
+  - {fileID: 2100016, guid: 79cfea6f50700794cb25cab1878c7826, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -695,7 +695,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: f95fb9977942bbd48adc62687cbf8b18, type: 2}
+  - {fileID: 2100014, guid: 79cfea6f50700794cb25cab1878c7826, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -787,9 +787,9 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 64c55725e17502644b712977a9b08bb9, type: 2}
-  - {fileID: 2100000, guid: 51a2459fe7940e04eb1bbb6765d123a9, type: 2}
-  - {fileID: 2100000, guid: 089634f7cd56a5b45bdf8ac2a2339bd6, type: 2}
+  - {fileID: 2100010, guid: 79cfea6f50700794cb25cab1878c7826, type: 3}
+  - {fileID: 2100006, guid: 79cfea6f50700794cb25cab1878c7826, type: 3}
+  - {fileID: 2100034, guid: 79cfea6f50700794cb25cab1878c7826, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -941,6 +941,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3751335657304714301}
     m_Modifications:
+    - target: {fileID: 1624194412792066465, guid: 5b99a63a130780549a01093e9d1e3dba,
+        type: 3}
+      propertyPath: m_Name
+      value: Window
+      objectReference: {fileID: 0}
     - target: {fileID: 1624194412791901569, guid: 5b99a63a130780549a01093e9d1e3dba,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1010,11 +1015,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: -0.018343976
-      objectReference: {fileID: 0}
-    - target: {fileID: 1624194412792066465, guid: 5b99a63a130780549a01093e9d1e3dba,
-        type: 3}
-      propertyPath: m_Name
-      value: Window
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5b99a63a130780549a01093e9d1e3dba, type: 3}
@@ -1100,6 +1100,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3751335657304714301}
     m_Modifications:
+    - target: {fileID: 1624194412792066465, guid: 5b99a63a130780549a01093e9d1e3dba,
+        type: 3}
+      propertyPath: m_Name
+      value: Window
+      objectReference: {fileID: 0}
     - target: {fileID: 1624194412791901569, guid: 5b99a63a130780549a01093e9d1e3dba,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1170,11 +1175,6 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: -0.018343976
       objectReference: {fileID: 0}
-    - target: {fileID: 1624194412792066465, guid: 5b99a63a130780549a01093e9d1e3dba,
-        type: 3}
-      propertyPath: m_Name
-      value: Window
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5b99a63a130780549a01093e9d1e3dba, type: 3}
 --- !u!4 &5767226835323722628 stripped
@@ -1190,6 +1190,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3751335657304714301}
     m_Modifications:
+    - target: {fileID: 1624194412792066465, guid: 5b99a63a130780549a01093e9d1e3dba,
+        type: 3}
+      propertyPath: m_Name
+      value: Window
+      objectReference: {fileID: 0}
     - target: {fileID: 1624194412791901569, guid: 5b99a63a130780549a01093e9d1e3dba,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1260,11 +1265,6 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: -0.018343976
       objectReference: {fileID: 0}
-    - target: {fileID: 1624194412792066465, guid: 5b99a63a130780549a01093e9d1e3dba,
-        type: 3}
-      propertyPath: m_Name
-      value: Window
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5b99a63a130780549a01093e9d1e3dba, type: 3}
 --- !u!4 &6782704254530636222 stripped
@@ -1280,6 +1280,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3751335657304714301}
     m_Modifications:
+    - target: {fileID: 1624194412792066465, guid: 5b99a63a130780549a01093e9d1e3dba,
+        type: 3}
+      propertyPath: m_Name
+      value: Window
+      objectReference: {fileID: 0}
     - target: {fileID: 1624194412791901569, guid: 5b99a63a130780549a01093e9d1e3dba,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1349,11 +1354,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: -0.018343976
-      objectReference: {fileID: 0}
-    - target: {fileID: 1624194412792066465, guid: 5b99a63a130780549a01093e9d1e3dba,
-        type: 3}
-      propertyPath: m_Name
-      value: Window
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5b99a63a130780549a01093e9d1e3dba, type: 3}
