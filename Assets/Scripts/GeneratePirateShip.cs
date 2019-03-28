@@ -17,6 +17,7 @@ public class GeneratePirateShip : MonoBehaviour
         public GameObject SmallMast;
         public GameObject LargeMast;
         [Header("Colours")]
+        public Shader SailShader;
         public Material SailMaterial;
     };
 
@@ -68,6 +69,7 @@ public class GeneratePirateShip : MonoBehaviour
 
             if (boat)
             {
+                this.name = "PirateBoat";
                 DestroyImmediate(front.transform.GetChild(0).Find("Pole").gameObject);
                 DestroyImmediate(front.transform.GetChild(0).Find("Jib").gameObject);
                 DestroyImmediate(front.transform.GetChild(0).Find("Spinakker").gameObject);
@@ -141,7 +143,7 @@ public class GeneratePirateShip : MonoBehaviour
 
                 smallMast.name = "Mast";
                 smallMast.transform.localPosition = Vector3.zero;
-                smallMast.transform.localScale = new Vector3(boatMastSize * 1.1f, boatMastSize, 1.0f);
+                smallMast.transform.localScale = new Vector3(boatMastSize * 1.2f, boatMastSize, 1.0f);
 
                 ChangeSailColour(randomColour, smallMast.transform.GetChild(0).GetChild(0).gameObject);
             }
@@ -288,9 +290,10 @@ public class GeneratePirateShip : MonoBehaviour
         }
     }
 
+
     void ChangeSailColour(Color randomColour, GameObject sail)
     {
-        parts.SailMaterial = new Material(Shader.Find("Specular"));
+        parts.SailMaterial = new Material(parts.SailShader);
         parts.SailMaterial.color = randomColour;
         parts.SailMaterial.name = "SailMaterial";
 
