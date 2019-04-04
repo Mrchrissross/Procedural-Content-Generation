@@ -11,6 +11,9 @@ public class Boid : MonoBehaviour
     [Header("Distance")]
     public float distance = 100.0f;
 
+    [Header("Speed")]
+    public float speed = 5.0f;
+
     [Header("Nesting")]
     GameObject nearestNest;
     public float nestRange = 100f;
@@ -20,26 +23,26 @@ public class Boid : MonoBehaviour
     [HideInInspector]
     public Rigidbody rb;
 
-    [Header("Attraction"), Tooltip("How close they need to be before they attract to each other.")]
-    float attractionRange = 25.0f;
+    [Header("Attraction"), Tooltip("How close they need to be before they attract to each other."), HideInInspector]
+    public float attractionRange = 25.0f;
 
-    [Tooltip("The maximum amount of force in attraction.")]
-    float attractionMultiplier = 3.0f;
+    [Tooltip("The maximum amount of force in attraction."), HideInInspector]
+    public float attractionMultiplier = 3.0f;
 
-    [Tooltip("The attraction force they have after every calculation.")]
-    float attractionForce = 15.0f;
+    [Tooltip("The attraction force they have after every calculation."), HideInInspector]
+    public float attractionForce = 15.0f;
 
-    [Header("Repulsion"), Tooltip("How close they need to be before they repel each other.")]
-    float repelRange = 20.0f;
+    [Header("Repulsion"), Tooltip("How close they need to be before they repel each other."), HideInInspector]
+    public float repelRange = 20.0f;
 
-    [Tooltip("The repel force they have after every calculation.")]
-    float repulsionForce = 12.0f;
+    [Tooltip("The repel force they have after every calculation."), HideInInspector]
+    public float repulsionForce = 12.0f;
 
-    [Header("Alignment"), Tooltip("How close they need to be before they align with each other.")]
-    float alignmentRange = 15.0f;
+    [Header("Alignment"), Tooltip("How close they need to be before they align with each other."), HideInInspector]
+    public float alignmentRange = 15.0f;
 
-    [Tooltip("The alignment force they have after every calculation.")]
-    float alignmentForce = 12.0f;
+    [Tooltip("The alignment force they have after every calculation."), HideInInspector]
+    public float alignmentForce = 12.0f;
 
 
     private void Start()
@@ -169,14 +172,18 @@ public class Boid : MonoBehaviour
         Vector3 pos = transform.position;
         transform.LookAt(pos + -vel);
 
-        if (pos.y < lowestHeight) { pos.y = lowestHeight; transform.position = pos; }
-        else if (pos.y > highestHeight) { pos.y = highestHeight; transform.position = pos; }
-
+        // Add constraints.
         if (pos.x < -distance) { pos.x = -distance; transform.position = pos; }
         else if (pos.x > distance) { pos.x = distance; transform.position = pos; }
 
+        if (pos.y < lowestHeight) { pos.y = lowestHeight; transform.position = pos; }
+        else if (pos.y > highestHeight) { pos.y = highestHeight; transform.position = pos; }
+
         if (pos.z < -distance) { pos.z = -distance; transform.position = pos; }
         else if (pos.z > distance) { pos.z = distance; transform.position = pos; }
+
+        // Increase the boid speed.
+        rb.velocity = rb.velocity * speed;
 
         // Fail-Safe: not all boids spawn near eachother and if a boid has no neighbours it will not move.
         // This makes them all move toward eachother, making them become neighbours with one another.
