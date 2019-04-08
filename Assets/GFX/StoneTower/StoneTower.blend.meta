@@ -17,6 +17,8 @@ ModelImporter:
     400010: StoneTower
     2100000: Todo
     2100002: luz
+    2100004: Stone
+    2100006: Crack
     2300000: Bottom
     2300002: Floating_Stone
     2300004: Floating_Stone_1
@@ -34,7 +36,17 @@ ModelImporter:
     4300008: StoneTower
     7400000: Default Take
     9500000: //RootNode
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Crack
+    second: {fileID: 2100000, guid: 0761ccfe5ea005b419028343dff17d65, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Stone
+    second: {fileID: 2100000, guid: 9f2722029d4f43c4c83d1af4d3d00f0f, type: 2}
   materials:
     importMaterials: 1
     materialName: 0

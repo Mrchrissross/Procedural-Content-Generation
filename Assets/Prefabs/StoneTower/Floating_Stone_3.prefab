@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8122771792538743541}
   - component: {fileID: 8122771792537645109}
   m_Layer: 0
-  m_Name: Floating_Stone
+  m_Name: Floating_Stone_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -57,8 +57,8 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 75737c26136edf645be1f92649294c29, type: 3}
-  - {fileID: 2100002, guid: 75737c26136edf645be1f92649294c29, type: 3}
+  - {fileID: 2100000, guid: 9f2722029d4f43c4c83d1af4d3d00f0f, type: 2}
+  - {fileID: 2100000, guid: 0761ccfe5ea005b419028343dff17d65, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

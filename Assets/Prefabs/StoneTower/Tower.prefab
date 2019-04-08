@@ -461,8 +461,8 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100002, guid: 75737c26136edf645be1f92649294c29, type: 3}
-  - {fileID: 2100000, guid: 75737c26136edf645be1f92649294c29, type: 3}
+  - {fileID: 2100000, guid: 0761ccfe5ea005b419028343dff17d65, type: 2}
+  - {fileID: 2100000, guid: 9f2722029d4f43c4c83d1af4d3d00f0f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -489,11 +489,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 9172224438306551297}
     m_Modifications:
-    - target: {fileID: 3577739856495710687, guid: c9ab975a7aafc7c43ba66a8f8b676f09,
-        type: 3}
-      propertyPath: m_Name
-      value: Orb
-      objectReference: {fileID: 0}
     - target: {fileID: 3577739856495710686, guid: c9ab975a7aafc7c43ba66a8f8b676f09,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -548,6 +543,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3577739856495710687, guid: c9ab975a7aafc7c43ba66a8f8b676f09,
+        type: 3}
+      propertyPath: m_Name
+      value: Orb
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c9ab975a7aafc7c43ba66a8f8b676f09, type: 3}

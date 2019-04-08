@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Lamp
-  m_Shader: {fileID: 4800000, guid: 362e007407c60654ba59254be2086c13, type: 3}
+  m_Shader: {fileID: 4800000, guid: 2e40ae8fd5a06f8489c1ccf18676b3ea, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -19,6 +19,10 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
+    - Texture2D_F089EEA6:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _BumpMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -56,6 +60,10 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
+    - Vector1_506ACE11: 0
+    - Vector1_6527F530: 0.5
+    - Vector1_BF16FC11: 0.25
+    - Vector1_FA8A4EFD: 1
     - _Brightness: 0
     - _BumpScale: 1
     - _Cutoff: 0.5
@@ -75,5 +83,10 @@ Material:
     - _UVSec: 0
     - _ZWrite: 1
     m_Colors:
+    - Color_4912839C: {r: 0.26415086, g: 0.26415086, b: 0.26415086, a: 0}
+    - Color_57D60BE2: {r: 0.43396226, g: 0.43396226, b: 0.43396226, a: 0}
+    - Color_F5B26448: {r: 0.101960786, g: 0.2509804, b: 0.29411766, a: 0}
+    - Vector2_AE37A2C5: {r: 1, g: 1, b: 0, a: 0}
+    - Vector2_C4CB38CD: {r: 0, g: 0, b: 0, a: 0}
     - _Color: {r: 0.1005, g: 0.2505, b: 0.2959, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 0}
