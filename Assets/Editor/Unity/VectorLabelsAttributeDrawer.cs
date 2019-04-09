@@ -4,7 +4,7 @@ using UnityEngine;
 [CustomPropertyDrawer(typeof(VectorLabelsAttribute))]
 public class VectorLabelsAttributeDrawer : PropertyDrawer
 {
-    private static readonly string[] defaultLabels = new string[] { "X", "Y", "Z", "W" };
+    private static readonly GUIContent[] defaultLabels = new GUIContent[] { new GUIContent("X"), new GUIContent("Y"), new GUIContent("Z"), new GUIContent("W") };
 
     private const int twoLinesThreshold = 375;
 
@@ -25,17 +25,17 @@ public class VectorLabelsAttributeDrawer : PropertyDrawer
             array = DrawFields(position, array, ObjectNames.NicifyVariableName(property.name), EditorGUI.IntField, vectorLabels);
             property.vector2IntValue = new Vector2Int(array[0], array[1]);
         }
-        else if (property.propertyType == SerializedPropertyType.Vector2)
-        {
-            float[] array = new float[] { property.vector2Value.x, property.vector2Value.y };
-            array = DrawFields(position, array, ObjectNames.NicifyVariableName(property.name), EditorGUI.FloatField, vectorLabels);
-            property.vector2Value = new Vector2(array[0], array[1]);
-        }
         else if (property.propertyType == SerializedPropertyType.Vector3Int)
         {
             int[] array = new int[] { property.vector3IntValue.x, property.vector3IntValue.y, property.vector3IntValue.z };
             array = DrawFields(position, array, ObjectNames.NicifyVariableName(property.name), EditorGUI.IntField, vectorLabels);
             property.vector3IntValue = new Vector3Int(array[0], array[1], array[2]);
+        }
+        else if (property.propertyType == SerializedPropertyType.Vector2)
+        {
+            float[] array = new float[] { property.vector2Value.x, property.vector2Value.y };
+            array = DrawFields(position, array, ObjectNames.NicifyVariableName(property.name), EditorGUI.FloatField, vectorLabels);
+            property.vector2Value = new Vector2(array[0], array[1]);
         }
         else if (property.propertyType == SerializedPropertyType.Vector3)
         {
@@ -51,7 +51,7 @@ public class VectorLabelsAttributeDrawer : PropertyDrawer
         }
     }
 
-    private T[] DrawFields<T>(Rect rect, T[] vector, string mainLabel, System.Func<Rect, T, T> fieldDrawer, VectorLabelsAttribute vectorLabels)
+    private T[] DrawFields<T>(Rect rect, T[] vector, string mainLabel, System.Func<Rect, GUIContent, T, T> fieldDrawer, VectorLabelsAttribute vectorLabels)
     {
         T[] result = vector;
 
@@ -81,22 +81,14 @@ public class VectorLabelsAttributeDrawer : PropertyDrawer
 
         for (int i = 0; i < vector.Length; i++)
         {
-            string label = vectorLabels.Labels.Length > i ? vectorLabels.Labels[i] : defaultLabels[i];
-            Vector2 labelSize = EditorStyles.label.CalcSize(new GUIContent(label));
-
-            Rect labelRect = fieldRect;
-            labelRect.width = Mathf.Max(labelSize.x + 5, 0.3f * fieldRect.width);
-            EditorGUI.LabelField(labelRect, label);
-
-
-            Rect valueRect = fieldRect;
-            valueRect.x += labelRect.width;
-            valueRect.width -= labelRect.width;
-            result[i] = fieldDrawer(valueRect, vector[i]);
-
+            GUIContent label = vectorLabels.Labels.Length > i ? new GUIContent(vectorLabels.Labels[i]) : defaultLabels[i];
+            Vector2 labelSize = EditorStyles.label.CalcSize(label);
+            EditorGUIUtility.labelWidth = Mathf.Max(labelSize.x + 5, 0.3f * fieldRect.width);
+            result[i] = fieldDrawer(fieldRect, label, vector[i]);
             fieldRect.x += fieldRect.width;
         }
 
+        EditorGUIUtility.labelWidth = 0;
 
         return result;
     }

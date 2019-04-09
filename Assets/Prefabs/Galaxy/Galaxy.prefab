@@ -43,9 +43,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ebd3c391c282714197e4fbd6a7b78f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  star: {fileID: 4745808363185260567, guid: 948dc6e4b2ebf764e8eecae79657fb37, type: 3}
-  starMaterial: {fileID: 2100000, guid: 3dc1d6799ad2659419015128e6ac0a5a, type: 2}
+  assets:
+    star: {fileID: 4745808363185260567, guid: 948dc6e4b2ebf764e8eecae79657fb37, type: 3}
+    starMaterial: {fileID: 2100000, guid: 3dc1d6799ad2659419015128e6ac0a5a, type: 2}
   rotationSpeed: 2
   scaleSpeed: 0.05
-  maxScale: 2
-  minScale: 1
+  scale: {x: 1, y: 2}

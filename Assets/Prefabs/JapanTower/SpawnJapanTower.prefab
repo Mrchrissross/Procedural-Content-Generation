@@ -49,6 +49,6 @@ MonoBehaviour:
     Connector: {fileID: 3608578512328982508, guid: 26888a8cd5a3a914196659e743bdbe52,
       type: 3}
     Top: {fileID: 335050948742690138, guid: d6e40d68c9a14d04c829bfec57865d24, type: 3}
-  maxLevel: 10
-  level: 4
+  levels: {x: 2, y: 8}
+  level: 0
   offset: 0.05

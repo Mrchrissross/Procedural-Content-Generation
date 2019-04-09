@@ -14,39 +14,28 @@ public class GenerateRock : MonoBehaviour
     Vector3[] vertices;
     public Material[] rockMaterials;
 
-    [Header("Poly Count: ", order = 0)]
-    [Range(1, 8)]
-    public int _Min = 2;
-    [Range(1, 8)]
-    public int _Max = 4;
+    [Header("Shape & Size")]
 
-    [Header("Scales: ", order = 1)]
-    [Header("X: ", order = 2)]
-    public float _min = 0.25f;
-    public float _max = 1.0f;
-    [Header("Y: ", order = 3)]
-    public float min = 0.25f;
-    public float max = 1.0f;
-    [Header("Z: ", order = 4)]
-    public float Min = 0.25f;
-    public float Max = 1.0f;
+    //How many levels are within the shape
+    [VectorLabels("Min", "Max")]
+    public Vector2Int shape = new Vector2Int(2, 4);
 
-    [Header("Noise: ", order = 5)]
+    [VectorLabels("Min", "Max")]
+    public Vector2 _x = new Vector2(0.25f, 1.0f);
+    [VectorLabels("Min", "Max")]
+    public Vector2 _y = new Vector2(0.25f, 1.0f);
+    [VectorLabels("Min", "Max")]
+    public Vector2 _z = new Vector2(0.25f, 1.0f);
+
+    [Header("Noise")]
+
     //The amplification of the noise
-    [Range(0.25f, 1.75f)]
-    public float lowestAmplification = 1.0f;
-    [Range(2.5f, 7.5f)]
-    public float highestAmplification = 5.0f;
+    [VectorLabels("Min", "Max")]
+    public Vector2 amplification = new Vector2(1.0f, 5.0f);
 
     //The frequency of the noise, the scale of the noise (how frequent there are hill / valleys)
-    [Range(0.05f, 0.5f)]
-    public float lowestFrequency = 0.3f;
-    [Range(0.5f, 1.5f)]
-    public float highestFrequency = 1.0f;
-
-    public float amplification;
-    public float frequency;
-    public int shape;
+    [VectorLabels("Min", "Max")]
+    public Vector2 frequency = new Vector2(0.3f, 1.0f);
 
     //The lacunarity of the noise, basically, the amount of holes in it
     float lacu = 1f;
@@ -56,8 +45,6 @@ public class GenerateRock : MonoBehaviour
 
     //The persistance of the noise (the difference in value between each octave)
     float persist = 1f;
-
-
 
     public void Generate()
     {
@@ -89,9 +76,9 @@ public class GenerateRock : MonoBehaviour
             return;
         }
 
-        shape = Random.Range(_Min, _Max + 1);
+        int newShape = Random.Range(shape.x, shape.y + 1);
 
-        mesh = GenerateIcoSphere.Create(shape, 1.0f);
+        mesh = GenerateIcoSphere.Create(newShape, 1.0f);
         vertices = mesh.vertices;
     }
 
@@ -99,18 +86,15 @@ public class GenerateRock : MonoBehaviour
     {
         float modifier;
 
-        frequency = Random.Range(0.3f, 1.0f);
-        amplification = Random.Range(1.0f, 5.0f);
+        float newFrequency = Random.Range(frequency.x, frequency.y);
+        float newAmplification = Random.Range(amplification.x, amplification.y);
 
-        var noise = new LibNoise.Generator.Billow(frequency, lacu, persist, octaves, Random.Range(0, 0xffffff), QualityMode.High);
-        //var noise = new LibNoise.Generator.RidgedMultifractal(frequency, lacu, octaves, Random.Range(0, 0xffffff), QualityMode.High);
-        //var noise = new LibNoise.Generator.Voronoi(frequency, 0.5, Random.Range(0, 0xfffffff), true);
-        //var noise = new LibNoise.Generator.Perlin(frequency, lacu, persist, octaves, Random.Range(0, 0xffffff), QualityMode.High);
+        var noise = new LibNoise.Generator.Billow(newFrequency, lacu, persist, octaves, Random.Range(0, 0xffffff), QualityMode.High);
 
         for (int i = 0; i < vertices.Length; i++)
         {
             modifier = (float)noise.GetValue(vertices[i].x, vertices[i].y, vertices[i].z);
-            modifier = ((modifier - 0.5f) / amplification) + 0.99f;
+            modifier = ((modifier - 0.5f) / newAmplification) + 0.99f;
             vertices[i] = Vector3.Scale(vertices[i], (Vector3.one * modifier));
         }
     }
@@ -124,9 +108,9 @@ public class GenerateRock : MonoBehaviour
 
     void Resize()
     {
-        float x = Random.Range(_min, _max);
-        float y = Random.Range(min, max);
-        float z = Random.Range(Min, Max);
+        float x = Random.Range(_x.x, _x.y);
+        float y = Random.Range(_y.x, _y.x);
+        float z = Random.Range(_z.x, _z.x);
 
         body.transform.localScale = new Vector3(x, y, z);
 

@@ -31,24 +31,33 @@ public class GenerateStoneTower : MonoBehaviour
 
     [Header("Tower"), VectorLabels("Min", "Max")]
     public Vector2 size = new Vector2(3.0f, 5.0f);
+
     [VectorLabels("Min", "Max")]
     public Vector2 height = new Vector2(0.5f, 2.5f);
+
     [Range(0.05f, 1.0f)]
     public float sidePulseSpeed = 0.1f;
 
     [Header("Orbs"), VectorLabels("Min", "Max")]
     public Vector2 orbScale = new Vector2(1.0f, 2.0f);
+
     [Range(-30.0f, 30.0f)]
     public float orbsRotationSpeed = 4.0f;
+
     [Range(0.01f, 0.2f)]
     public float orbsScaleSpeed = 0.05f;
+
     private GenerateGalaxy generateGalaxy;
 
     [Header("Flying Rocks"), VectorLabels("Min", "Max")]
     public Vector2Int rockCount = new Vector2Int(4, 10);
+
     [VectorLabels("Min", "Max")]
     public Vector2 rockRotation = new Vector2(0.5f, 7.0f);
+
+    [Range(-150.0f, 150.0f)]
     public float roundRotation = 4.0f;
+
     [Range(5.0f, 15.0f)]
     public float distance = 15.0f;
 
@@ -133,6 +142,7 @@ public class GenerateStoneTower : MonoBehaviour
             TempGalaxy.name = "galaxy";
             TempGalaxy.transform.localPosition = Vector3.zero;
             TempGalaxy.transform.localScale = new Vector3(orbScale.y / 2, orbScale.y / 2, orbScale.y / 2);
+            generateGalaxy = TempGalaxy.GetComponent<GenerateGalaxy>();
         }
         else
         {
@@ -218,16 +228,14 @@ public class GenerateStoneTower : MonoBehaviour
                     distanceY = Random.Range(10.0f, distance);
             }
 
-            GameObject rock = null;
-
-            rock = Instantiate(parts.Rock, flyingRockHolder);
+            GameObject rock = Instantiate(parts.Rock, flyingRockHolder);
 
             rock.transform.localPosition = new Vector3(distanceX, distanceY, height);
 
             // Change the maximum x scale
-            rock.GetComponent<GenerateRock>()._max = 0.55f;
+            rock.GetComponent<GenerateRock>()._x.y = 0.55f;
             // Change the maximum z scale
-            rock.GetComponent<GenerateRock>().Max = 0.55f;
+            rock.GetComponent<GenerateRock>()._z.y = 0.55f;
 
             rock.GetComponent<GenerateRock>().Generate();
 
@@ -249,10 +257,10 @@ public class GenerateStoneTower : MonoBehaviour
 
         if(generateGalaxy)
         {
-            if(generateGalaxy.minScale != orbScale.x)
-                generateGalaxy.minScale = orbScale.x;
-            if(generateGalaxy.maxScale != orbScale.y)
-                generateGalaxy.maxScale = orbScale.y;
+            if(generateGalaxy.scale.x != orbScale.x)
+                generateGalaxy.scale.x = orbScale.x;
+            if(generateGalaxy.scale.y != orbScale.y)
+                generateGalaxy.scale.y = orbScale.y;
             if (generateGalaxy.rotationSpeed != orbsRotationSpeed)
                 generateGalaxy.rotationSpeed = orbsRotationSpeed;
             if (generateGalaxy.scaleSpeed != orbsScaleSpeed)

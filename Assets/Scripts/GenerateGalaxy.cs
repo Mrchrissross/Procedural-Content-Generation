@@ -3,9 +3,15 @@ using System.Collections.Generic;
 
 public class GenerateGalaxy : MonoBehaviour
 {
-    public GameObject star;
-    public Material starMaterial;
-    private GameObject tempStar;
+    [System.Serializable]
+    public class Star
+    {
+        public GameObject star;
+        public Material starMaterial;
+    };
+
+    public Star assets;
+
     private List<GameObject> stars = new List<GameObject>();
 
     int numberOfStars;
@@ -13,8 +19,10 @@ public class GenerateGalaxy : MonoBehaviour
 
     public float rotationSpeed = 2.0f;
     public float scaleSpeed = 0.05f;
-    public float minScale = 1.0f;
-    public float maxScale = 2.0f;
+
+    [VectorLabels("Min", "Max")]
+    public Vector2 scale = new Vector2(1.0f, 2.0f);
+
     bool scaleDir;
 
     // Start is called before the first frame update
@@ -58,9 +66,9 @@ public class GenerateGalaxy : MonoBehaviour
             var pos = new Vector3(x, 0, z);
 
             //And spawn the star at this position
-            tempStar = Instantiate(star, transform);
+            GameObject tempStar = Instantiate(assets.star, transform);
             tempStar.transform.localPosition = pos;
-            tempStar.transform.GetChild(0).GetComponent<MeshRenderer>().material = starMaterial;
+            tempStar.transform.GetChild(0).GetComponent<MeshRenderer>().material = assets.starMaterial;
             stars.Add(tempStar);
         }
         //Continue
@@ -71,17 +79,17 @@ public class GenerateGalaxy : MonoBehaviour
         float newRotationY = (transform.rotation.eulerAngles.y > 360.0f) ? 0 : transform.rotation.eulerAngles.y + (Time.deltaTime * rotationSpeed);
         transform.eulerAngles = new Vector3(transform.rotation.x, newRotationY, transform.rotation.z);
 
-        if (transform.localScale.x > maxScale)
+        if (transform.localScale.x > scale.y)
             scaleDir = false;
-        else if (transform.localScale.x < minScale)
+        else if (transform.localScale.x < scale.x)
             scaleDir = true;
 
         float scaleModifier = 0.0f;
         if (transform.parent)
             scaleModifier = transform.parent.localScale.y;
 
-        float scale = (!scaleDir) ? transform.localScale.x - (Time.deltaTime * scaleSpeed) : transform.localScale.x + (Time.deltaTime * scaleSpeed);
-        transform.localScale = new Vector3(scale, scale * (scaleModifier * 2), scale);
+        float newScale = (!scaleDir) ? transform.localScale.x - (Time.deltaTime * scaleSpeed) : transform.localScale.x + (Time.deltaTime * scaleSpeed);
+        transform.localScale = new Vector3(newScale, newScale * (scaleModifier * 2), newScale);
     }
 
 }

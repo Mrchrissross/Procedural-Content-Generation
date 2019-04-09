@@ -15,26 +15,16 @@ public class GenerateTree : MonoBehaviour
     public TowerParts parts;
 
     //How many levels are within the shape
-    [Range(2, 8)]
-    public int shapeMin = 2;
-    [Range(3, 8)]
-    public int shapeMax = 4;
+    [VectorLabels("Min", "Max")]
+    public Vector2Int shape = new Vector2Int(2, 4);
 
     //The amplification of the noise
-    [Range(0.25f, 1.75f)]
-    public float lowestAmplification = 1.0f;
-    [Range(2.5f, 7.5f)]
-    public float highestAmplification = 5.0f;
+    [VectorLabels("Min", "Max")]
+    public Vector2 amplification = new Vector2(1.0f, 5.0f);
 
     //The frequency of the noise, the scale of the noise (how frequent there are hill / valleys)
-    [Range(0.05f, 0.5f)]
-    public float lowestFrequency = 0.3f;
-    [Range(0.5f, 1.5f)]
-    public float highestFrequency = 1.0f;
-
-    public float amplification;
-    public float frequency;
-    public int shape;
+    [VectorLabels("Min", "Max")]
+    public Vector2 frequency = new Vector2(0.3f, 1.0f);
 
     bool ExtraTrunk;
 
@@ -152,9 +142,9 @@ public class GenerateTree : MonoBehaviour
             return;
         }
 
-        shape = Random.Range(shapeMin, shapeMax);
+        int newShape = Random.Range(shape.x, shape.y);
 
-        mesh = GenerateIcoSphere.Create(shape, 1.0f);
+        mesh = GenerateIcoSphere.Create(newShape, 1.0f);
         vertices = mesh.vertices;
 
         GenerateLeafNoise();
@@ -171,15 +161,15 @@ public class GenerateTree : MonoBehaviour
 
         int     octaves = 1;
 
-        frequency = Random.Range(lowestFrequency, highestFrequency);
-        amplification = Random.Range(lowestAmplification, highestAmplification);
+        float newFrequency = Random.Range(frequency.x, frequency.y);
+        float newAmplification = Random.Range(amplification.x, amplification.y);
 
-        var noise = new LibNoise.Generator.RidgedMultifractal(frequency, lacu, octaves, Random.Range(0, 0xffffff), QualityMode.High);
+        var noise = new LibNoise.Generator.RidgedMultifractal(newFrequency, lacu, octaves, Random.Range(0, 0xffffff), QualityMode.High);
 
         for (int i = 0; i < vertices.Length; i++)
         {
             modifier = (float)noise.GetValue(vertices[i].x, vertices[i].y, vertices[i].z);
-            modifier = ((modifier - 0.5f) / amplification) + 0.99f;
+            modifier = ((modifier - 0.5f) / newAmplification) + 0.99f;
             vertices[i] = Vector3.Scale(vertices[i], (Vector3.one * modifier));
         }
     }

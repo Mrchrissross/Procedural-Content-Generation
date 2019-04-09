@@ -19,16 +19,11 @@ public class GenerateJapanTower : MonoBehaviour
     private GameObject tempConnector;
     private GameObject tempTop;
 
-    public int maxLevel = 2;
-    public int level;
-
-    private float height;
-    public float offset = 0.1f;
+    [VectorLabels("Min", "Max")]
+    public Vector2Int levels = new Vector2Int(1, 2);
 
     public void Generate()
     {
-        level = Random.Range(1, maxLevel + 1);
-
         GenerateBase();
         GenerateTop();
     }
@@ -57,9 +52,11 @@ public class GenerateJapanTower : MonoBehaviour
 
     void GenerateTop()
     {
-        height = tempBase.GetComponent<MeshFilter>().sharedMesh.bounds.extents.z * 2;
+        float height = tempBase.GetComponent<MeshFilter>().sharedMesh.bounds.extents.z * 2;
 
-        for(int i = 0; i < level; i++)
+        int level = Random.Range(levels.x, levels.y + 1);
+
+        for (int i = 0; i < level; i++)
         {
             tempConnector = Instantiate(parts.Connector, tempEmpty.transform);
             if (tempConnector)
@@ -78,7 +75,7 @@ public class GenerateJapanTower : MonoBehaviour
 
                 tempTop.name = "TowerTop";
                 tempTop.transform.localScale = new Vector3(rand, GenerateTopScale(rand), rand);
-                tempTop.transform.localPosition = new Vector3(0, height - offset, 0);
+                tempTop.transform.localPosition = new Vector3(0, height - 0.05f, 0);
                 height += (tempTop.transform.GetChild(0).GetComponent<MeshFilter>().sharedMesh.bounds.extents.z * tempTop.transform.localScale.y);
             }
             else
