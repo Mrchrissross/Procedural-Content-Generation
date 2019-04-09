@@ -26,7 +26,7 @@ Transform:
   m_GameObject: {fileID: 7969245867891259675}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 4.881796, y: 4.881796, z: 4.881796}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -55,21 +55,13 @@ MonoBehaviour:
     Galaxy: {fileID: 1670358526903031431, guid: 9187c7b4ae427e0408c875804adf7665,
       type: 3}
     Rock: {fileID: 8820303100817179257, guid: 1b5d8ca0cf69bfa41be08789b942c0ff, type: 3}
-  flyingRocks: []
-  flyingRocksSpeeds: []
-  floatingSideRocks: []
-  minSize: 3
-  maxSize: 5
-  minHeight: 0.5
-  maxHeight: 2.5
-  sidePulseSpeed: 0.1
-  orbsMinScale: 0.2
-  orbsMaxScale: 0.7
+  size: {x: 3, y: 5}
+  height: {x: 0.5, y: 2.5}
+  sidePulseSpeed: 0.25
+  orbScale: {x: 1, y: 2}
   orbsRotationSpeed: 4
   orbsScaleSpeed: 0.05
-  minimumCount: 4
-  maximumCount: 10
-  minimumRotationSpeed: 0.5
-  maximumRotationSpeed: 7
-  rocksRotationSpeed: 4
+  rockCount: {x: 4, y: 10}
+  rockRotation: {x: 0.5, y: 7}
+  roundRotation: 4
   distance: 10

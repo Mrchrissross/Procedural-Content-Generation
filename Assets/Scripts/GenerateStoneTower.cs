@@ -24,30 +24,31 @@ public class GenerateStoneTower : MonoBehaviour
     Transform flyingRockHolder;
     Transform floatingRockHolder;
 
-    public List<GameObject> flyingRocks = new List<GameObject>();
-    public List<float> flyingRocksSpeeds = new List<float>();
-    public List<GameObject> floatingSideRocks = new List<GameObject>();
+    [Header("Rocks")]
+    List<GameObject> flyingRocks = new List<GameObject>();
+    List<float> flyingRocksSpeeds = new List<float>();
+    List<GameObject> floatingSideRocks = new List<GameObject>();
 
-    [Header("Tower")]
-    public float minSize = 3.0f;
-    public float maxSize = 5.0f;
-    public float minHeight = 0.5f;
-    public float maxHeight = 2.5f;
+    [Header("Tower"), VectorLabels("Min", "Max")]
+    public Vector2 size = new Vector2(3.0f, 5.0f);
+    [VectorLabels("Min", "Max")]
+    public Vector2 height = new Vector2(0.5f, 2.5f);
+    [Range(0.05f, 1.0f)]
     public float sidePulseSpeed = 0.1f;
 
-    [Header("Orbs")]
-    public float orbsMinScale = 1.0f;
-    public float orbsMaxScale = 2.0f;
+    [Header("Orbs"), VectorLabels("Min", "Max")]
+    public Vector2 orbScale = new Vector2(1.0f, 2.0f);
+    [Range(-30.0f, 30.0f)]
     public float orbsRotationSpeed = 4.0f;
+    [Range(0.01f, 0.2f)]
     public float orbsScaleSpeed = 0.05f;
     private GenerateGalaxy generateGalaxy;
 
-    [Header("Flying Rocks")]
-    public int minimumCount = 4;
-    public int maximumCount = 10;
-    public float minimumRotationSpeed = 0.5f;
-    public float maximumRotationSpeed = 7.0f;
-    public float rocksRotationSpeed = 4.0f;
+    [Header("Flying Rocks"), VectorLabels("Min", "Max")]
+    public Vector2Int rockCount = new Vector2Int(4, 10);
+    [VectorLabels("Min", "Max")]
+    public Vector2 rockRotation = new Vector2(0.5f, 7.0f);
+    public float roundRotation = 4.0f;
     [Range(5.0f, 15.0f)]
     public float distance = 15.0f;
 
@@ -73,7 +74,7 @@ public class GenerateStoneTower : MonoBehaviour
             {
                 flyingRocks.Add(child.gameObject);
 
-                float rotationSpeed = Random.Range(minimumRotationSpeed, maximumRotationSpeed);
+                float rotationSpeed = Random.Range(rockRotation.x, rockRotation.y);
                 bool direction = (Random.value > 0.5f);
                 rotationSpeed = (direction) ? rotationSpeed : -rotationSpeed;
                 flyingRocksSpeeds.Add(rotationSpeed);
@@ -97,9 +98,9 @@ public class GenerateStoneTower : MonoBehaviour
         tempBase = Instantiate(parts.Base, transform);
         if (tempBase)
         {
-            float size = Random.Range(minSize, maxSize);
+            float baseSize = Random.Range(size.x, size.y);
             this.name = "StoneTower";
-            transform.localScale = new Vector3(size, size, size);
+            transform.localScale = new Vector3(baseSize, baseSize, baseSize);
             tempBase.name = "base";
             tempBase.transform.localPosition = Vector3.zero;
         }
@@ -116,8 +117,8 @@ public class GenerateStoneTower : MonoBehaviour
             TempTower.name = "tower";
             TempTower.transform.localPosition = Vector3.zero;
 
-            float height = Random.Range(minHeight, maxHeight);
-            TempTower.transform.localScale = new Vector3(1.0f, 1.0f, height);
+            float towerHeight = Random.Range(height.x, height.y);
+            TempTower.transform.localScale = new Vector3(1.0f, 1.0f, towerHeight);
         }
         else
         {
@@ -131,7 +132,7 @@ public class GenerateStoneTower : MonoBehaviour
         {
             TempGalaxy.name = "galaxy";
             TempGalaxy.transform.localPosition = Vector3.zero;
-            TempGalaxy.transform.localScale = new Vector3(orbsMaxScale / 2, orbsMaxScale / 2, orbsMaxScale / 2);
+            TempGalaxy.transform.localScale = new Vector3(orbScale.y / 2, orbScale.y / 2, orbScale.y / 2);
         }
         else
         {
@@ -191,7 +192,7 @@ public class GenerateStoneTower : MonoBehaviour
 
     void GenerateFlyingRocks()
     {
-        int count = Random.Range(minimumCount, maximumCount);
+        int count = Random.Range(rockCount.x, rockCount.y);
 
         flyingRockHolder = transform.Find("tower").Find("FlyingRockHolders");
 
@@ -232,7 +233,7 @@ public class GenerateStoneTower : MonoBehaviour
 
             rock.GetComponent<GenerateRock>().body.GetComponent<MeshRenderer>().material = TempTower.transform.Find("Tower").GetComponent<MeshRenderer>().sharedMaterials[1];
 
-            float rotationSpeed = Random.Range(minimumRotationSpeed, maximumRotationSpeed);
+            float rotationSpeed = Random.Range(rockRotation.x, rockRotation.y);
             bool direction = (Random.value > 0.5f);
             rotationSpeed = (direction) ? rotationSpeed : -rotationSpeed;
             flyingRocksSpeeds.Add(rotationSpeed);
@@ -248,10 +249,10 @@ public class GenerateStoneTower : MonoBehaviour
 
         if(generateGalaxy)
         {
-            if(generateGalaxy.minScale != orbsMinScale)
-                generateGalaxy.minScale = orbsMinScale;
-            if(generateGalaxy.maxScale != orbsMaxScale)
-                generateGalaxy.maxScale = orbsMaxScale;
+            if(generateGalaxy.minScale != orbScale.x)
+                generateGalaxy.minScale = orbScale.x;
+            if(generateGalaxy.maxScale != orbScale.y)
+                generateGalaxy.maxScale = orbScale.y;
             if (generateGalaxy.rotationSpeed != orbsRotationSpeed)
                 generateGalaxy.rotationSpeed = orbsRotationSpeed;
             if (generateGalaxy.scaleSpeed != orbsScaleSpeed)
@@ -282,7 +283,7 @@ public class GenerateStoneTower : MonoBehaviour
         flyingRockHolder.localEulerAngles = new Vector3(
                         flyingRockHolder.localEulerAngles.x, 
                         flyingRockHolder.localEulerAngles.y,
-                        flyingRockHolder.localEulerAngles.z + Time.deltaTime * rocksRotationSpeed);
+                        flyingRockHolder.localEulerAngles.z + Time.deltaTime * roundRotation);
 
         if(flyingRockHolder.localEulerAngles.y < 360.0f)
             flyingRockHolder.localEulerAngles = new Vector3(
