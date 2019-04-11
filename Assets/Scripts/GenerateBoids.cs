@@ -20,6 +20,7 @@ public class GenerateBoids : MonoBehaviour
     [Header("Behaviour")]
     public bool bird;
     public bool ship;
+    public bool fish;
 
     [Tooltip("Speed at which the boids move."), Range(1.0f, 2.0f)]
     public float speed = 1.0f;
@@ -49,15 +50,23 @@ public class GenerateBoids : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        this.name = "Boids";
         nestTimer.y = nestTimer.x;
         nestAttractionTimer.y = nestAttractionTimer.x;
 
-        if (ship)
+        water = GameObject.Find("water");
+        if(bird)
+            this.name = "Birds";
+        else if (ship)
         {
-            water = GameObject.Find("water");
-            height.x = water.transform.position.y - 0.25f;
-            height.y = water.transform.position.y + 0.25f;
+            this.name = "Ships";
+            height.x = water.transform.position.y + 0.25f;
+            height.y = water.transform.position.y + 0.5f;
+        }
+        else if(fish)
+        {
+            this.name = "Fish";
+            height.x = water.transform.position.y - 4.0f;
+            height.y = water.transform.position.y - 1.0f;
         }
 
         Transform nest = transform.GetChild(0).GetChild(0);
@@ -80,8 +89,10 @@ public class GenerateBoids : MonoBehaviour
         for (int i = 0; i < numberOfBoids; ++i)
         {
             // Assign variables
+            if(fish || ship)
+                boids[i].directionOnly = true;
+
             boids[i].speed = speed;
-            boids[i].directionOnly = ship;
             boids[i].distance = distance;
             boids[i].lowestHeight = height.x;
             boids[i].highestHeight = height.y;
