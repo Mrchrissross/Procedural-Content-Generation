@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1166774009}
   m_Layer: 0
-  m_Name: Nest (1)
+  m_Name: BirdNest (1)
   m_TagString: Untagged
   m_Icon: {fileID: -1412012063857583412, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -23,8 +23,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1166774008}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 9.801776, y: 99.26031, z: 10.922527}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1301724862}
@@ -40,7 +40,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1301724862}
   m_Layer: 0
-  m_Name: Nests
+  m_Name: BirdNests
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -72,7 +72,7 @@ GameObject:
   - component: {fileID: 7010071969459550248}
   - component: {fileID: 7010071969459550249}
   m_Layer: 0
-  m_Name: GenerateBoids
+  m_Name: GenerateBirdBoids
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -107,10 +107,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   boidPrefab: {fileID: 585990277832352762, guid: fe5b393a9aadf2441a316ca450f4f110,
     type: 3}
-  numberOfBoids: 200
+  numberOfBoids: 50
   neighbourCount: 10
   distance: 200
-  height: {x: 50, y: 100}
+  height: {x: 100, y: 150}
+  bird: 1
+  ship: 0
   speed: 1.2
   attraction: {x: 25, y: 3, z: 15}
   repulsion: {x: 20, y: 12}

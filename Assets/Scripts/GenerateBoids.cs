@@ -17,7 +17,11 @@ public class GenerateBoids : MonoBehaviour
     [Space, VectorLabels("Lowest", "Highest")]
     public Vector2 height = new Vector2(50.0f, 100.0f);
 
-    [Header("Behaviour"), Tooltip("Speed at which the boids move."), Range(1.0f, 2.0f)]
+    [Header("Behaviour")]
+    public bool bird;
+    public bool ship;
+
+    [Tooltip("Speed at which the boids move."), Range(1.0f, 2.0f)]
     public float speed = 1.0f;
 
     [Space, Tooltip("How attracted they are to each other."), VectorLabels("Range", "Multiplier", "Force")]
@@ -40,20 +44,30 @@ public class GenerateBoids : MonoBehaviour
     [Space, Tooltip("How long the attraction will last."), VectorLabels("Time", "Count")]
     public Vector2 nestAttractionTimer = new Vector2(1.5f, 0.0f);
 
-    public static GenerateBoids instance;
+    GameObject water;
 
     // Start is called before the first frame update
     void Start()
     {
-        instance = this;
         this.name = "Boids";
         nestTimer.y = nestTimer.x;
         nestAttractionTimer.y = nestAttractionTimer.x;
+
+        if (ship)
+        {
+            water = GameObject.Find("water");
+            height.x = water.transform.position.y - 0.25f;
+            height.y = water.transform.position.y + 0.25f;
+        }
+
+        Transform nest = transform.GetChild(0).GetChild(0);
+        nest.position = new Vector3(nest.position.x, height.y - ((height.y - height.x) / 2), nest.position.z);
 
         for (int i = 0; i < numberOfBoids; ++i)
         {
             Boid newBoid = Instantiate(boidPrefab, transform);
             newBoid.transform.position = new Vector3(Random.Range(-distance, distance), Random.Range(height.x, height.y), Random.Range(-distance, distance));
+            newBoid.AcquireNests(listOfNests);
             boids.Add(newBoid);
         }
 
@@ -67,6 +81,7 @@ public class GenerateBoids : MonoBehaviour
         {
             // Assign variables
             boids[i].speed = speed;
+            boids[i].directionOnly = ship;
             boids[i].distance = distance;
             boids[i].lowestHeight = height.x;
             boids[i].highestHeight = height.y;

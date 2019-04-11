@@ -35,20 +35,38 @@ public class GeneratePirateShip : MonoBehaviour
 
     bool boat;
 
+    private void Start()
+    {
+        Generate();
+    }
+
     public void Generate()
     {
+        // Reset the rotation of the object during generation.
+        Vector3 oldRotation = transform.eulerAngles;
+        transform.eulerAngles = Vector3.zero;
+
+        // Build the base of the ship.
         GenerateShip();
+        // Generate all the masts.
         GenerateMast();
 
+        // If we're building a ship, install some stairs.
         if(!boat)
             GenerateStairs();
 
+        // Place some lamps on there.
         GenerateLamps();
 
+        // Install all the windows.
         GenerateWindows();
 
+        // Randomise the scale of the object.
         float scale = Random.Range(0.8f, 1.5f);
         transform.localScale = new Vector3(scale, scale, scale);
+
+        // Finally set the object rotation back to how it was originally.
+        transform.eulerAngles = oldRotation;
     }
 
     void GenerateShip()

@@ -14,6 +14,9 @@ public class Boid : MonoBehaviour
     [Header("Speed")]
     public float speed = 5.0f;
 
+    [Header("Rotation")]
+    public bool directionOnly;
+
     [Header("Nesting")]
     GameObject nearestNest;
     public float nestRange = 100f;
@@ -44,6 +47,7 @@ public class Boid : MonoBehaviour
     [Tooltip("The alignment force they have after every calculation."), HideInInspector]
     public float alignmentForce = 12.0f;
 
+    public List<GameObject> listOfNests = new List<GameObject>();
 
     private void Start()
     {
@@ -53,7 +57,7 @@ public class Boid : MonoBehaviour
     public void ComputeForce(List<Boid> boid, int nCount, int NumBoids)
     {
         nearestNest = null;
-        foreach (var nest in GenerateBoids.instance.listOfNests)
+        foreach (var nest in listOfNests)
         {
             float dist = Vector3.Distance(nest.transform.position, transform.position);
 
@@ -71,7 +75,7 @@ public class Boid : MonoBehaviour
 
         force = Vector3.zero;
 
-        Vector3 pos = transform.position,
+        Vector3 pos = transform.position.xz(directionOnly),
                 repelForce = Vector3.zero,
                 sep = Vector3.zero,
                 delta = Vector3.zero,
@@ -89,7 +93,7 @@ public class Boid : MonoBehaviour
 
         for (int i = 0; i < NumBoids; i++)
         {
-            Vector3 boidPos = boid[i].transform.position;
+            Vector3 boidPos = boid[i].transform.position.xz(directionOnly);
 
             if (this == boid[i]) continue;
 
@@ -107,7 +111,7 @@ public class Boid : MonoBehaviour
             // Align
             if ((distance < alignmentRange) && (alignCount < nCount))
             {
-                direction += boid[i].rb.velocity;
+                direction += boid[i].rb.velocity.xz(directionOnly);
                 alignCount++;
             }
 
@@ -128,7 +132,7 @@ public class Boid : MonoBehaviour
         {
             direction /= alignCount;
             vDesired = direction;
-            alignForce += (vDesired - rb.velocity) * alignmentForce;
+            alignForce += (vDesired - rb.velocity.xz(directionOnly)) * alignmentForce;
         }
 
         // Attract
@@ -137,7 +141,7 @@ public class Boid : MonoBehaviour
             centerOfMass /= attractCount;
             direction = (centerOfMass - pos).normalized;
             vDesired = direction * attractionMultiplier;
-            attractForce += (vDesired - rb.velocity) * attractionForce;
+            attractForce += (vDesired - rb.velocity.xz(directionOnly)) * attractionForce;
         }
 
         //move to nearest nest
@@ -145,7 +149,7 @@ public class Boid : MonoBehaviour
         {
             direction = (nearestNest.transform.position - pos).normalized;
             vDesired = direction * attractionMultiplier * nestAttraction;
-            attractForce += (vDesired - rb.velocity) * attractionForce;
+            attractForce += (vDesired - rb.velocity.xz(directionOnly)) * attractionForce;
         }
 
         force = repelForce + alignForce + attractForce;
@@ -153,9 +157,9 @@ public class Boid : MonoBehaviour
 
     public void UpdatePosition()
     {
-        rb.AddForce(force);
+        rb.AddForce(force.xz(directionOnly));
 
-        Vector3 vel = rb.velocity;
+        Vector3 vel = rb.velocity.xz(directionOnly);
         float direction = vel.magnitude;
 
         if (direction < 10.0f)
@@ -169,8 +173,11 @@ public class Boid : MonoBehaviour
             rb.velocity = vel.normalized * direction;
         }
 
-        Vector3 pos = transform.position;
+        Vector3 pos = transform.position.xz(directionOnly);
         transform.LookAt(pos + -vel);
+
+        if (directionOnly)
+            transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, transform.eulerAngles.z);
 
         // Add constraints.
         if (pos.x < -distance) { pos.x = -distance; transform.position = pos; }
@@ -193,5 +200,24 @@ public class Boid : MonoBehaviour
 
             rb.velocity = transform.forward.normalized * 10;
         }
+    }
+
+    public void AcquireNests(List<GameObject> _listOfNests)
+    {
+        foreach (GameObject nest in _listOfNests)
+        {
+            listOfNests.Add(nest);
+        }
+    }
+}
+
+static class Vector3Extensions
+{
+    public static Vector3 xz(this Vector3 pos, bool directionOnly = false)
+    {
+        if (directionOnly)
+            return new Vector3(pos.x, 0, pos.z);
+        else
+            return pos;
     }
 }
