@@ -809,6 +809,12 @@ MonoBehaviour:
     tree: {fileID: 2797555094056309856, guid: 88f5776e7c03193439001cce1acc7c18, type: 3}
     palm: {fileID: 5783259635868536677, guid: bf30e5b9cbcbf054d862066b6d73381f, type: 3}
     rock: {fileID: 8820303100817179257, guid: 1b5d8ca0cf69bfa41be08789b942c0ff, type: 3}
+  TerrainAndWater:
+    serializedVersion: 2
+    m_Bits: 528
+  noWater:
+    serializedVersion: 2
+    m_Bits: 512
 --- !u!4 &1662084115
 Transform:
   m_ObjectHideFlags: 0
@@ -817,7 +823,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1662084113}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -110.15252, y: 71.20311, z: -121.071205}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}

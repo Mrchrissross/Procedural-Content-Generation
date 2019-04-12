@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8604458500887715563}
   - component: {fileID: 8604458500887715560}
+  - component: {fileID: 7173108924429481431}
   m_Layer: 0
   m_Name: SpawnJapanTower
   m_TagString: Untagged
@@ -49,6 +50,17 @@ MonoBehaviour:
     Connector: {fileID: 3608578512328982508, guid: 26888a8cd5a3a914196659e743bdbe52,
       type: 3}
     Top: {fileID: 335050948742690138, guid: d6e40d68c9a14d04c829bfec57865d24, type: 3}
-  levels: {x: 2, y: 8}
-  level: 0
-  offset: 0.05
+  levels: {x: 1, y: 10}
+--- !u!65 &7173108924429481431
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8604458500887715561}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 3.6, y: 15.797688, z: 3.6}
+  m_Center: {x: 0, y: 7.898844, z: 0}

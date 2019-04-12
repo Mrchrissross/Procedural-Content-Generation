@@ -56,7 +56,7 @@ MonoBehaviour:
       type: 3}
     Rock: {fileID: 8820303100817179257, guid: 1b5d8ca0cf69bfa41be08789b942c0ff, type: 3}
   size: {x: 3, y: 5}
-  height: {x: 0.5, y: 2.5}
+  height: {x: 1.25, y: 2.5}
   sidePulseSpeed: 0.25
   orbScale: {x: 1, y: 2}
   orbsRotationSpeed: 4
