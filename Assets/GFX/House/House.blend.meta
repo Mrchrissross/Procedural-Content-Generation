@@ -1,0 +1,203 @@
+fileFormatVersion: 2
+guid: d867f895bd5b5df468d248698c657791
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: Base
+    100002: BeamsBase
+    100004: BeamsBaseTunnel
+    100006: BeamsRoofBase
+    100008: BeamsTop
+    100010: Bricks
+    100012: Connector
+    100014: ConnectorBeams
+    100016: //RootNode
+    100018: TilesBase
+    100020: TilesTop
+    100022: Top
+    100024: Beams
+    100026: Building
+    100028: Entrance
+    100030: Tiles
+    100032: Window
+    100034: Beams_001
+    100036: Tiles_001
+    100038: Top_001
+    400000: Base
+    400002: BeamsBase
+    400004: BeamsBaseTunnel
+    400006: BeamsRoofBase
+    400008: BeamsTop
+    400010: Bricks
+    400012: Connector
+    400014: ConnectorBeams
+    400016: //RootNode
+    400018: TilesBase
+    400020: TilesTop
+    400022: Top
+    400024: Beams
+    400026: Building
+    400028: Entrance
+    400030: Tiles
+    400032: Window
+    400034: Beams_001
+    400036: Tiles_001
+    400038: Top_001
+    2100000: unnamed
+    2100002: TopMaterial
+    2100004: TopMaterial__Top
+    2100006: Base
+    2100008: Metal
+    2100010: Light
+    2100012: Wood
+    2100014: Building
+    2100016: Door
+    2100018: Dark
+    2100020: Dark__Top
+    2100022: Tiles
+    2300000: Base
+    2300002: BeamsBase
+    2300004: BeamsBaseTunnel
+    2300006: BeamsRoofBase
+    2300008: BeamsTop
+    2300010: Bricks
+    2300012: Connector
+    2300014: ConnectorBeams
+    2300016: TilesBase
+    2300018: TilesTop
+    2300020: Top
+    2300022: Beams
+    2300024: Building
+    2300026: Entrance
+    2300028: Tiles
+    2300030: Window
+    2300032: Beams_001
+    2300034: Tiles_001
+    2300036: Top_001
+    3300000: Base
+    3300002: BeamsBase
+    3300004: BeamsBaseTunnel
+    3300006: BeamsRoofBase
+    3300008: BeamsTop
+    3300010: Bricks
+    3300012: Connector
+    3300014: ConnectorBeams
+    3300016: TilesBase
+    3300018: TilesTop
+    3300020: Top
+    3300022: Beams
+    3300024: Building
+    3300026: Entrance
+    3300028: Tiles
+    3300030: Window
+    3300032: Beams_001
+    3300034: Tiles_001
+    3300036: Top_001
+    4300000: BeamsBaseTunnel
+    4300002: TilesTop
+    4300004: Connector
+    4300006: BeamsTop
+    4300008: BeamsRoofBase
+    4300010: Top
+    4300012: ConnectorBeams
+    4300014: TilesBase
+    4300016: BeamsBase
+    4300018: Bricks
+    4300020: Base
+    4300022: Window
+    4300024: Building
+    4300026: Entrance
+    4300028: Beams
+    4300030: Tiles
+    4300032: Top_001
+    4300034: Tiles_001
+    4300036: Beams_001
+    7400000: Default Take
+    9500000: //RootNode
+    2186277476908879412: ImportLogs
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 1
+    hasPreviousCalculatedGlobalScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -1,0 +1,59 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &5387358710950621460
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 75437025985834830}
+  - component: {fileID: 551982865281745229}
+  m_Layer: 0
+  m_Name: SpawnHouse
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &75437025985834830
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5387358710950621460}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &551982865281745229
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5387358710950621460}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9a2ee69955bc2345b47a708e471a382, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  parts:
+    Base: {fileID: 3866413123332835352, guid: 9b34c660ad149584ca97a45ede348da6, type: 3}
+    Entrance: {fileID: 1513919586062310618, guid: 063971bca067cbc43abf949ae402eb74,
+      type: 3}
+    Main: {fileID: 5152613834858066859, guid: d4b818383e70f0b409954b6736f97267, type: 3}
+    Window: {fileID: 6415346442511914605, guid: 73507b54814afdd4ba25ed4e2c15b815,
+      type: 3}
+  baseMinimum: {x: 1.8, y: 1.8, z: 1.8}
+  baseMaximum: {x: 2.2, y: 2.2, z: 2.2}
+  firstMinimum: {x: 1.5, y: 1.5, z: 1.5}
+  firstMaximum: {x: 1.7, y: 1.7, z: 1.7}
+  secondMinimum: {x: 1, y: 1, z: 1}
+  secondMaximum: {x: 1.3, y: 1.3, z: 1.3}
+  SpawnPoints: []

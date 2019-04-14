@@ -48,6 +48,7 @@ public class GenerateWorld : MonoBehaviour
         {
             GameObject temp2 = Instantiate(worldObjects.japanTower);
             temp2.transform.position = new Vector3(Random.Range(-250.0f, 250.0f), 100, Random.Range(-250.0f, 250.0f));
+            temp2.transform.eulerAngles = new Vector3(0, Random.Range(0.0f, 360.0f), 0.0f);
             temp2.GetComponent<GenerateJapanTower>().Generate();
             FindGround(temp2, 0.0f, true);
             temp2.transform.parent = temp.transform;
