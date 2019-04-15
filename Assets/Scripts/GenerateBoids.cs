@@ -22,8 +22,8 @@ public class GenerateBoids : MonoBehaviour
     public bool ship;
     public bool fish;
 
-    [Tooltip("Speed at which the boids move."), Range(1.0f, 2.0f)]
-    public float speed = 1.0f;
+    [Tooltip("Speed at which the boids move."), VectorLabels("Min", "Max")]
+    public Vector2 speed = new Vector2(0.5f, 1.5f);
 
     [Space, Tooltip("How attracted they are to each other."), VectorLabels("Range", "Multiplier", "Force")]
     public Vector3 attraction = new Vector3(25.0f, 3.0f, 15.0f);
@@ -75,7 +75,9 @@ public class GenerateBoids : MonoBehaviour
         for (int i = 0; i < numberOfBoids; ++i)
         {
             Boid newBoid = Instantiate(boidPrefab, transform);
+            newBoid.Initialise();
             newBoid.transform.position = new Vector3(Random.Range(-distance, distance), Random.Range(height.x, height.y), Random.Range(-distance, distance));
+            newBoid.speed = Random.Range(speed.x, speed.y);
             newBoid.AcquireNests(listOfNests);
 
             if (bird)
@@ -100,7 +102,6 @@ public class GenerateBoids : MonoBehaviour
             if(fish || ship)
                 boids[i].directionOnly = true;
 
-            boids[i].speed = speed;
             boids[i].distance = distance;
             boids[i].lowestHeight = height.x;
             boids[i].highestHeight = height.y;

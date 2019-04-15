@@ -23,8 +23,7 @@ public class Boid : MonoBehaviour
     public float nestAttraction = 0.05f;
 
     Vector3 force;
-    [HideInInspector]
-    public Rigidbody rb;
+    Rigidbody rb;
 
     [Header("Attraction"), Tooltip("How close they need to be before they attract to each other."), HideInInspector]
     public float attractionRange = 25.0f;
@@ -49,7 +48,7 @@ public class Boid : MonoBehaviour
 
     public List<GameObject> listOfNests = new List<GameObject>();
 
-    private void Start()
+    public void Initialise()
     {
         rb = GetComponent<Rigidbody>();
     }
