@@ -46,7 +46,7 @@ MonoBehaviour:
   generateWater: 1
   terrain: {fileID: 4096931139099715058, guid: 271f59820ef985049a1b5cff76deb8f2, type: 3}
   water: {fileID: 242041250727633365, guid: b289e585b7fefd74f8d02f54006caa58, type: 3}
-  seaLevel: {x: 19, y: 26}
+  seaLevel: {x: 30, y: 36}
   frequency: 2.5
   lacu: 2
   octaves: 2

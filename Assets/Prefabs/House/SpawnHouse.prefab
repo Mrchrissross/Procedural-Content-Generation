@@ -50,10 +50,15 @@ MonoBehaviour:
     Main: {fileID: 5152613834858066859, guid: d4b818383e70f0b409954b6736f97267, type: 3}
     Window: {fileID: 6415346442511914605, guid: 73507b54814afdd4ba25ed4e2c15b815,
       type: 3}
+    houseMaterials:
+    - {fileID: 2100000, guid: adbbd60ef7af7754daf054e045b95bf5, type: 2}
+    - {fileID: 2100000, guid: f493a8de24381c54f8ce3e7b3bdd185f, type: 2}
+    - {fileID: 2100000, guid: 466ef7fe0e0221a4fba1ced8f4efcb5f, type: 2}
+    - {fileID: 2100000, guid: 96a489d917c29f54184c468ecb9a73c2, type: 2}
+    - {fileID: 2100000, guid: 37d47c5145f9057479011ab18915cccd, type: 2}
+    - {fileID: 2100000, guid: 6149f3de60317f1469db90c4d309273f, type: 2}
   baseMinimum: {x: 1.8, y: 1.8, z: 1.8}
   baseMaximum: {x: 2.2, y: 2.2, z: 2.2}
   firstMinimum: {x: 1.5, y: 1.5, z: 1.5}
   firstMaximum: {x: 1.7, y: 1.7, z: 1.7}
-  secondMinimum: {x: 1, y: 1, z: 1}
-  secondMaximum: {x: 1.3, y: 1.3, z: 1.3}
   SpawnPoints: []

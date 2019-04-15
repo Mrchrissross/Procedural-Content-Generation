@@ -17,6 +17,8 @@ public class GenerateTerrain : MonoBehaviour
 
     [VectorLabels("Min", "Max")]
     public Vector2 seaLevel = new Vector2(19.0f, 26.0f);
+    [HideInInspector]
+    public float waterHeight;
 
     //The frequency of the noise
     public float frequency = 1f;
@@ -60,7 +62,8 @@ public class GenerateTerrain : MonoBehaviour
             {
                 sea.transform.parent = transform;
                 sea.name = "water";
-                sea.transform.localPosition = new Vector3(0.0f, Random.Range(seaLevel.x, seaLevel.y), 0.0f);
+                waterHeight = Random.Range(seaLevel.x, seaLevel.y);
+                sea.transform.localPosition = new Vector3(0.0f, waterHeight, 0.0f);
             }
             else
             {

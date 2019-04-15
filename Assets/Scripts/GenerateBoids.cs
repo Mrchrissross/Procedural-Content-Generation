@@ -77,6 +77,14 @@ public class GenerateBoids : MonoBehaviour
             Boid newBoid = Instantiate(boidPrefab, transform);
             newBoid.transform.position = new Vector3(Random.Range(-distance, distance), Random.Range(height.x, height.y), Random.Range(-distance, distance));
             newBoid.AcquireNests(listOfNests);
+
+            if (bird)
+                newBoid.name = "Bird " + (i + 1).ToString();
+            if (ship)
+                newBoid.name = "Ship " + (i + 1).ToString();
+            if (fish)
+                newBoid.name = "Fish " + (i + 1).ToString();
+
             boids.Add(newBoid);
         }
 

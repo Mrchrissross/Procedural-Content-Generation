@@ -7,11 +7,13 @@ public class GenerateHouse : MonoBehaviour
     [System.Serializable]
     public class HouseParts
     {
-        [Header("ShipParts")]
+        [Header("House Parts")]
         public GameObject Base;
         public GameObject Entrance;
         public GameObject Main;
         public GameObject Window;
+        [Header("House Materials")]
+        public Material[] houseMaterials;
     };
 
     public HouseParts parts;
@@ -20,6 +22,7 @@ public class GenerateHouse : MonoBehaviour
     GameObject _entrance;
     GameObject _main;
     GameObject _window;
+    Material houseMaterial;
 
     [Header("Base Size")]
     public Vector3 baseMinimum = new Vector3(1.8f, 1.8f, 1.8f);
@@ -29,7 +32,7 @@ public class GenerateHouse : MonoBehaviour
     public Vector3 firstMinimum = new Vector3(1.5f, 1.5f, 1.5f);
     public Vector3 firstMaximum = new Vector3(1.7f, 1.7f, 1.7f);
 
-    public List<Transform> SpawnPoints = new List<Transform>();
+    List<Transform> SpawnPoints = new List<Transform>();
 
     public void Generate()
     {
@@ -40,6 +43,8 @@ public class GenerateHouse : MonoBehaviour
 
     void GenerateStructure()
     {
+        houseMaterial = parts.houseMaterials[Random.Range(0, parts.houseMaterials.Length)];
+
         this.name = "House";
 
         _base = SpawnObject(parts.Base, transform, baseMinimum, baseMaximum, "Base");
@@ -59,7 +64,7 @@ public class GenerateHouse : MonoBehaviour
     {
         bool extra = (Random.value > 0.5f);
 
-        if(extra)
+        if (extra)
         {
             _main = SpawnObject(parts.Main, SpawnPoints[0], firstMinimum, firstMaximum, "LayerOne");
             _main.transform.eulerAngles = new Vector3(0, 180, 0);
@@ -91,9 +96,9 @@ public class GenerateHouse : MonoBehaviour
 
     void GenerateRooms()
     {
-        for(int i = 1; i < SpawnPoints.Count; i++)
+        for (int i = 1; i < SpawnPoints.Count; i++)
         {
-            if(i < SpawnPoints.Count - 2)
+            if (i < SpawnPoints.Count - 2)
             {
                 bool addRoom = (Random.value > 0.5f);
 
@@ -101,13 +106,13 @@ public class GenerateHouse : MonoBehaviour
                     _main = SpawnObject(parts.Main, SpawnPoints[i], firstMinimum, firstMaximum, "LayerOne");
 
                 bool addWindow = (Random.value > 0.5f);
-                    
-                if(addWindow)
+
+                if (addWindow)
                 {
                     _window = Instantiate(parts.Window);
                     _window.name = "Window";
 
-                    if(addRoom)
+                    if (addRoom)
                         _window.transform.parent = _main.transform.Find("SpawnWindow");
                     else
                         _window.transform.parent = SpawnPoints[i];
@@ -154,6 +159,15 @@ public class GenerateHouse : MonoBehaviour
 
         temp.name = name;
         temp.transform.localScale = new Vector3(sizeX, sizeY, sizeZ);
+
+        var materials = temp.transform.GetChild(0).GetComponent<MeshRenderer>().sharedMaterials;
+
+        if(name == "Entrance")
+            materials[0] = houseMaterial;
+        else
+            materials[1] = houseMaterial;
+
+        temp.transform.GetChild(0).GetComponent<MeshRenderer>().sharedMaterials = materials;
 
         return temp;
     }

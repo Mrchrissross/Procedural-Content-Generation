@@ -6,7 +6,6 @@ public class GeneratePalmTree : MonoBehaviour
     [System.Serializable]
     public class TowerParts
     {
-        public GameObject Empty;
         public GameObject Trunk;
         public GameObject Leaf;
     };
@@ -16,17 +15,11 @@ public class GeneratePalmTree : MonoBehaviour
     public bool randomExtraTrunk;
     public bool randomExtraLeaves;
 
-    private GameObject tempEmpty;
     private GameObject tempTrunk;
     private GameObject tempLeaf;
 
     private List<GameObject> bones = new List<GameObject>();
     private List<GameObject> spawnPoints = new List<GameObject>();
-
-    //void Start()
-    //{
-        //Generate();
-    //}
 
     public void Generate()
     {
@@ -53,19 +46,11 @@ public class GeneratePalmTree : MonoBehaviour
 
     void GenerateTrunk()
     {
-        tempEmpty = Instantiate(parts.Empty, this.transform);
-        if (tempEmpty)
-        {
-            this.name = "PalmTree";
-            tempEmpty.name = "Palm";
-            tempEmpty.transform.localPosition = Vector3.zero;
-        }
-        else
-            Debug.LogError("The empty prefab has not been set on " + this.name + " object.");
+        this.name = "PalmTree";
 
-        tempTrunk = Instantiate(parts.Trunk, tempEmpty.transform);
+        tempTrunk = Instantiate(parts.Trunk, transform);
         if (tempTrunk)
-            tempTrunk.name = "Trunk";
+            tempTrunk.name = "Palm";
         else
             Debug.LogError("The trunk prefab has not been set on " + this.name + " object.");
     }
@@ -129,7 +114,7 @@ public class GeneratePalmTree : MonoBehaviour
 
     void PositionLeaves(int spawnPoint, Vector2 scale)
     {
-        tempEmpty = Instantiate(parts.Empty);
+        GameObject tempEmpty = new GameObject();
         if (tempEmpty)
         {
             tempEmpty.name = "Leaves";
