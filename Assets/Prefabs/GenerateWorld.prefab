@@ -1,0 +1,82 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &6736877464791588472
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6736877464791588474}
+  - component: {fileID: 6736877464791588475}
+  m_Layer: 0
+  m_Name: GenerateWorld
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6736877464791588474
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6736877464791588472}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6736877464791588475
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6736877464791588472}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfd67d9b8b2f5a34aac5871a80f8792b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  worldObjects:
+    terrain: {fileID: 2945450101700235151, guid: cc611c599d8e89c4eb0312ce77b9887d,
+      type: 3}
+    ships: {fileID: 7010071969459550254, guid: 1838023c225825c4182ca6377d7abf2f, type: 3}
+    birds: {fileID: 7010071969459550254, guid: b5cb5fe2bf7c9bb4ba925bf17c5e4448, type: 3}
+    fish: {fileID: 7010071969459550254, guid: fabd3995545db3c4d8276f9670d6b74b, type: 3}
+    stoneTower: {fileID: 7969245867891259675, guid: 5dc73a86c85dbf744b67e4862ff53516,
+      type: 3}
+    japanTower: {fileID: 8604458500887715561, guid: 8c6decbc4bb385e4ca5e176ddacce38a,
+      type: 3}
+    house: {fileID: 5387358710950621460, guid: ff362d888f26fa544bec0dbc9c0e1688, type: 3}
+    tree: {fileID: 2797555094056309856, guid: 88f5776e7c03193439001cce1acc7c18, type: 3}
+    palm: {fileID: 5783259635868536677, guid: bf30e5b9cbcbf054d862066b6d73381f, type: 3}
+    rock: {fileID: 8820303100817179257, guid: 1b5d8ca0cf69bfa41be08789b942c0ff, type: 3}
+  noWater:
+    serializedVersion: 2
+    m_Bits: 512
+  seaLevel: {x: 28, y: 33}
+  generateShips: 1
+  numberOfShips: 100
+  randomSailColour: 1
+  sailColour: {r: 0, g: 0, b: 0, a: 1}
+  generateBirds: 1
+  numberOfBirds: 50
+  generateFish: 1
+  numberOfFish: 100
+  generateStoneTower: 1
+  generateJapaneseTower: 1
+  numberOfTowers: 30
+  generateHouses: 1
+  numberOfHouses: 100
+  generateTrees: 1
+  numberOfTrees: 200
+  generatePalmTrees: 1
+  numberOfPalms: 400
+  generateRocks: 1
+  numberOfRocks: 400

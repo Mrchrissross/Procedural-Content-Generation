@@ -58,3 +58,5 @@ MonoBehaviour:
       type: 3}
     SailShader: {fileID: 4800000, guid: e419bc78c502d034f829b5caada9414f, type: 3}
     SailMaterial: {fileID: 0}
+  _randomColour: 1
+  sailColour: {r: 0.990566, g: 0, b: 0, a: 1}

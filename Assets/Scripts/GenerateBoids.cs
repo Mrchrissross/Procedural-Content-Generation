@@ -12,14 +12,18 @@ public class GenerateBoids : MonoBehaviour
     public int neighbourCount = 10;
     
     [Header("Spawning")]
-    public float distance = 100.0f;
+    public Vector2 distance = new Vector2(-100.0f, 100.0f);
 
     [Space, VectorLabels("Lowest", "Highest")]
     public Vector2 height = new Vector2(50.0f, 100.0f);
 
     [Header("Behaviour")]
     public bool bird;
+    [Space]
     public bool ship;
+    public bool randomSailColour;
+    public Color sailColour;
+    [Space]
     public bool fish;
 
     [Tooltip("Speed at which the boids move."), VectorLabels("Min", "Max")]
@@ -37,7 +41,7 @@ public class GenerateBoids : MonoBehaviour
     [Header("Nesting")]
     public List<GameObject> listOfNests = new List<GameObject>();
     [Space, Tooltip("The range at which the nest will attract boids.")]
-    public float nestRange = 100f;
+    public float nestRange = 10000f;
     [Space, Tooltip("How strong the boids wil be attracted to the nest."), VectorLabels("Force", "Current Force")]
     public Vector2 nestAttraction = new Vector2(2.0f, 0.0f);
     [Space, Tooltip("Time between attractions."), VectorLabels("Time", "Count")]
@@ -75,8 +79,8 @@ public class GenerateBoids : MonoBehaviour
         for (int i = 0; i < numberOfBoids; ++i)
         {
             Boid newBoid = Instantiate(boidPrefab, transform);
-            newBoid.Initialise();
-            newBoid.transform.position = new Vector3(Random.Range(-distance, distance), Random.Range(height.x, height.y), Random.Range(-distance, distance));
+            newBoid.Initialise(ship, randomSailColour, sailColour);
+            newBoid.transform.position = new Vector3(Random.Range(distance.x, distance.y), Random.Range(height.x, height.y), Random.Range(distance.x, distance.y));
             newBoid.speed = Random.Range(speed.x, speed.y);
             newBoid.AcquireNests(listOfNests);
 
@@ -102,7 +106,8 @@ public class GenerateBoids : MonoBehaviour
             if(fish || ship)
                 boids[i].directionOnly = true;
 
-            boids[i].distance = distance;
+            boids[i].distance.x = distance.x;
+            boids[i].distance.y = distance.y;
             boids[i].lowestHeight = height.x;
             boids[i].highestHeight = height.y;
             boids[i].attractionRange = attraction.x;

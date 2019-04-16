@@ -29,6 +29,8 @@ public class GenerateWorld : MonoBehaviour
     [Header("Ships")]
     public bool generateShips = true;
     public int numberOfShips = 50;
+    public bool randomSailColour = true;
+    public Color sailColour;
 
     [Header("Birds")]
     public bool generateBirds = true;
@@ -78,6 +80,8 @@ public class GenerateWorld : MonoBehaviour
         {
             temp = Instantiate(worldObjects.ships);
             temp.GetComponent<GenerateBoids>().numberOfBoids = numberOfShips;
+            temp.GetComponent<GenerateBoids>().randomSailColour = randomSailColour;
+            temp.GetComponent<GenerateBoids>().sailColour = sailColour;
         }
 
         if(generateBirds)

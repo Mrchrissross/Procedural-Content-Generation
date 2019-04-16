@@ -9,7 +9,7 @@ public class Boid : MonoBehaviour
     public float highestHeight = 100.0f;
 
     [Header("Distance")]
-    public float distance = 100.0f;
+    public Vector2 distance = new Vector2(-100.0f, 100.0f);
 
     [Header("Speed")]
     public float speed = 5.0f;
@@ -48,9 +48,15 @@ public class Boid : MonoBehaviour
 
     public List<GameObject> listOfNests = new List<GameObject>();
 
-    public void Initialise()
+    public void Initialise(bool ship, bool randomSail, Color sailColour)
     {
         rb = GetComponent<Rigidbody>();
+
+        if(ship)
+        {
+            transform.GetChild(0).GetComponent<GeneratePirateShip>()._randomColour = randomSail;
+            transform.GetChild(0).GetComponent<GeneratePirateShip>().sailColour = sailColour;
+        }
     }
 
     public void ComputeForce(List<Boid> boid, int nCount, int NumBoids)
@@ -179,14 +185,14 @@ public class Boid : MonoBehaviour
             transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, transform.eulerAngles.z);
 
         // Add constraints.
-        if (pos.x < -distance) { pos.x = -distance; transform.position = pos; }
-        else if (pos.x > distance) { pos.x = distance; transform.position = pos; }
+        if (pos.x < distance.x) { pos.x = distance.x; transform.position = pos; }
+        else if (pos.x > distance.y) { pos.x = distance.y; transform.position = pos; }
 
         if (pos.y < lowestHeight) { pos.y = lowestHeight; transform.position = pos; }
         else if (pos.y > highestHeight) { pos.y = highestHeight; transform.position = pos; }
 
-        if (pos.z < -distance) { pos.z = -distance; transform.position = pos; }
-        else if (pos.z > distance) { pos.z = distance; transform.position = pos; }
+        if (pos.z < distance.x) { pos.z = distance.x; transform.position = pos; }
+        else if (pos.z > distance.y) { pos.z = distance.y; transform.position = pos; }
 
         // Increase the boid speed.
         rb.velocity = rb.velocity * speed;

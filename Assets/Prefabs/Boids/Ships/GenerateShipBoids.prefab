@@ -109,10 +109,12 @@ MonoBehaviour:
     type: 3}
   numberOfBoids: 50
   neighbourCount: 10
-  distance: 200
+  distance: {x: -200, y: 200}
   height: {x: -5, y: 5}
   bird: 0
   ship: 1
+  randomSailColour: 1
+  sailColour: {r: 1, g: 0, b: 0, a: 1}
   fish: 0
   speed: {x: 0.5, y: 1.5}
   attraction: {x: 15, y: 3, z: 15}

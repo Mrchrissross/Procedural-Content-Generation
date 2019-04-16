@@ -33,6 +33,9 @@ public class GeneratePirateShip : MonoBehaviour
 
     private List<GameObject> stairs = new List<GameObject>();
 
+    public bool _randomColour;
+    public Color sailColour;
+
     bool boat;
 
     private void Start()
@@ -150,7 +153,13 @@ public class GeneratePirateShip : MonoBehaviour
     void GenerateMast()
     {
         float smallerMastSize = Random.Range(0.8f, 1.2f);
-        Color randomColour = new Color(Random.Range(0.0f, 1.0f), Random.Range(0.0f, 1.0f), Random.Range(0.0f, 1.0f));
+
+        Color randomColour = new Color(1 ,1, 1);
+
+        if (_randomColour)
+            randomColour = new Color(Random.Range(0.0f, 1.0f), Random.Range(0.0f, 1.0f), Random.Range(0.0f, 1.0f));
+        else
+            randomColour = sailColour;
 
         if (boat)
         {
