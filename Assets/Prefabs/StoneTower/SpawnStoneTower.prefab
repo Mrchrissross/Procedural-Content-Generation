@@ -59,8 +59,10 @@ MonoBehaviour:
   height: {x: 1.25, y: 2.5}
   sidePulseSpeed: 0.25
   orbScale: {x: 1, y: 2}
-  orbsRotationSpeed: 4
+  orbsRotationSpeed: -9
   orbsScaleSpeed: 0.05
+  galaxyGrowth: {x: 0.6, y: 1}
+  galaxyGrowthSpeed: 0.05
   rockCount: {x: 4, y: 10}
   rockRotation: {x: 0.5, y: 7}
   roundRotation: 4

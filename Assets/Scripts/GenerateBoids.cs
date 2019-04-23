@@ -80,7 +80,7 @@ public class GenerateBoids : MonoBehaviour
         {
             Boid newBoid = Instantiate(boidPrefab, transform);
             newBoid.Initialise(ship, randomSailColour, sailColour);
-            newBoid.transform.position = new Vector3(Random.Range(distance.x, distance.y), Random.Range(height.x, height.y), Random.Range(distance.x, distance.y));
+            newBoid.transform.position = new Vector3(Random.Range(transform.position.x + distance.x, transform.position.x + distance.y), Random.Range(height.x, height.y), Random.Range(transform.position.z + distance.x, transform.position.z + distance.y));
             newBoid.speed = Random.Range(speed.x, speed.y);
             newBoid.AcquireNests(listOfNests);
 
@@ -94,7 +94,7 @@ public class GenerateBoids : MonoBehaviour
             boids.Add(newBoid);
         }
 
-        distance *= 10;
+        distance *= 100;
     }
 
     // Update is called once per frame

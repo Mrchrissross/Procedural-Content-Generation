@@ -83,8 +83,8 @@ Material:
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
-    - Color_417D174B: {r: 0.7939789, g: 0.7877358, b: 1, a: 0}
-    - Color_6F5D16F4: {r: 0, g: 0.04436748, b: 1.552862, a: 0}
+    - Color_417D174B: {r: 0.9786107, g: 1, b: 0.43867922, a: 0}
+    - Color_6F5D16F4: {r: 1.5528622, g: 1.3323134, b: 0, a: 0}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}

@@ -19,6 +19,16 @@ public class GenerateWorld : MonoBehaviour
         public GameObject rock;
     };
 
+    [System.Serializable]
+    public class Fleets
+    {
+        public int numberOfShips = 100;
+        public Vector3 fleetPosition;
+        public Vector2 spawnDistance = new Vector2(-100.0f, 100.0f);
+        public bool randomSailColour = false;
+        public Color sailColour;
+    };
+
     public WorldObjects worldObjects;
 
     [Header("Terrain")]
@@ -27,10 +37,7 @@ public class GenerateWorld : MonoBehaviour
     public Vector2 seaLevel = new Vector2(19.0f, 26.0f);
 
     [Header("Ships")]
-    public bool generateShips = true;
-    public int numberOfShips = 50;
-    public bool randomSailColour = true;
-    public Color sailColour;
+    public Fleets[] fleets;
 
     [Header("Birds")]
     public bool generateBirds = true;
@@ -76,12 +83,14 @@ public class GenerateWorld : MonoBehaviour
         // Boids
         GameObject temp;
 
-        if (generateShips)
+        foreach(Fleets fleet in fleets)
         {
             temp = Instantiate(worldObjects.ships);
-            temp.GetComponent<GenerateBoids>().numberOfBoids = numberOfShips;
-            temp.GetComponent<GenerateBoids>().randomSailColour = randomSailColour;
-            temp.GetComponent<GenerateBoids>().sailColour = sailColour;
+            temp.transform.position = fleet.fleetPosition;
+            temp.GetComponent<GenerateBoids>().distance = fleet.spawnDistance;
+            temp.GetComponent<GenerateBoids>().numberOfBoids = fleet.numberOfShips;
+            temp.GetComponent<GenerateBoids>().randomSailColour = fleet.randomSailColour;
+            temp.GetComponent<GenerateBoids>().sailColour = fleet.sailColour;
         }
 
         if(generateBirds)

@@ -38,7 +38,7 @@ public class GenerateStoneTower : MonoBehaviour
     [Range(0.05f, 1.0f)]
     public float sidePulseSpeed = 0.1f;
 
-    [Header("Orbs"), VectorLabels("Min", "Max")]
+    [Header("Clouds"), VectorLabels("Min", "Max")]
     public Vector2 orbScale = new Vector2(1.0f, 2.0f);
 
     [Range(-30.0f, 30.0f)]
@@ -46,6 +46,13 @@ public class GenerateStoneTower : MonoBehaviour
 
     [Range(0.01f, 0.2f)]
     public float orbsScaleSpeed = 0.05f;
+
+    [Header("Storm")]
+    [VectorLabels("Min", "Max")]
+    public Vector2 galaxyGrowth = new Vector2(0.6f, 1.0f);
+
+    [Range(0.01f, 2.0f)]
+    public float galaxyGrowthSpeed = 1.0f;
 
     private GenerateGalaxy generateGalaxy;
 
@@ -62,6 +69,7 @@ public class GenerateStoneTower : MonoBehaviour
     public float distance = 15.0f;
 
     bool sideRocksExpand;
+    bool growStorm;
 
     private void Start()
     {
@@ -298,6 +306,25 @@ public class GenerateStoneTower : MonoBehaviour
                         flyingRockHolder.localEulerAngles.x,
                         flyingRockHolder.localEulerAngles.y,
                         flyingRockHolder.localEulerAngles.z - 360.0f);
+        
+        if(!growStorm)
+        {
+            Vector3 galScale = TempGalaxy.transform.parent.localScale;
+            galScale.x -= Time.deltaTime * galaxyGrowthSpeed;
+            TempGalaxy.transform.parent.localScale = galScale;
+
+            if (TempGalaxy.transform.parent.localScale.x < galaxyGrowth.x)
+                growStorm = true;
+        }
+        else
+        {
+            Vector3 galScale = TempGalaxy.transform.parent.localScale;
+            galScale.x += Time.deltaTime * galaxyGrowthSpeed;
+            TempGalaxy.transform.parent.localScale = galScale;
+
+            if (TempGalaxy.transform.parent.localScale.x > galaxyGrowth.y)
+                growStorm = false;
+        }
     }
 
     public void DestroyObject()
