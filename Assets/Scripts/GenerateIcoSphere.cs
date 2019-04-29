@@ -1,8 +1,7 @@
 ﻿using UnityEngine;
 
-public static class GenerateIcoSphere {
-
-
+public static class GenerateIcoSphere
+{
     public static Mesh Create(int n, float radius)
     {
         int nn = n * 4;

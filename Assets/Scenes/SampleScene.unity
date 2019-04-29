@@ -277,7 +277,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &294135051
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1594,6 +1594,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: GenerateWorld
+      objectReference: {fileID: 0}
+    - target: {fileID: 6736877464791588472, guid: bfd60bf94591b2147b80bb8e1730b30d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6736877464791588474, guid: bfd60bf94591b2147b80bb8e1730b30d,
         type: 3}
