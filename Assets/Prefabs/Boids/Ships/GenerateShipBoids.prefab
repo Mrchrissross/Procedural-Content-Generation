@@ -117,12 +117,12 @@ MonoBehaviour:
   sailColour: {r: 1, g: 0, b: 0, a: 1}
   fish: 0
   speed: {x: 0.5, y: 1.5}
-  attraction: {x: 15, y: 3, z: 15}
+  attraction: {x: 25, y: 3, z: 15}
   repulsion: {x: 20, y: 12}
-  alignment: {x: 5, y: 2.5}
+  alignment: {x: 10, y: 9}
   listOfNests:
   - {fileID: 1166774008}
   nestRange: 10000
   nestAttraction: {x: 2, y: 0}
-  nestTimer: {x: 45, y: 0}
+  nestTimer: {x: 60, y: 0}
   nestAttractionTimer: {x: 1.5, y: 0}

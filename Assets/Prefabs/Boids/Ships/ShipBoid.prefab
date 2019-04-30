@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6235409876135326624}
-  - component: {fileID: 5574521398865660540}
   - component: {fileID: 585990277832352762}
   - component: {fileID: 5018016650600613147}
+  - component: {fileID: 6715714328316525732}
   m_Layer: 0
   m_Name: ShipBoid
   m_TagString: Untagged
@@ -34,19 +34,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &5574521398865660540
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4689434467066373149}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &585990277832352762
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -61,12 +48,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lowestHeight: 50
   highestHeight: 100
-  distance: 100
+  distance: {x: -100, y: 100}
   speed: 5
   directionOnly: 0
   nestRange: 100
   nestAttraction: 0.05
-  rb: {fileID: 0}
   attractionRange: 25
   attractionMultiplier: 3
   attractionForce: 15
@@ -74,6 +60,7 @@ MonoBehaviour:
   repulsionForce: 12
   alignmentRange: 15
   alignmentForce: 12
+  listOfNests: []
 --- !u!54 &5018016650600613147
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -90,6 +77,20 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!136 &6715714328316525732
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4689434467066373149}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 1.3978167
+  m_Height: 10.519485
+  m_Direction: 2
+  m_Center: {x: 0, y: -0.41810417, z: -0.30133343}
 --- !u!1001 &4421728102683717237
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -120,7 +121,7 @@ PrefabInstance:
     - target: {fileID: 3398412665079766768, guid: 6e295d8ea8b207343a8501a456a9845e,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 3398412665079766768, guid: 6e295d8ea8b207343a8501a456a9845e,
         type: 3}
@@ -130,7 +131,7 @@ PrefabInstance:
     - target: {fileID: 3398412665079766768, guid: 6e295d8ea8b207343a8501a456a9845e,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 3398412665079766768, guid: 6e295d8ea8b207343a8501a456a9845e,
         type: 3}
@@ -156,26 +157,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3398412665079766768, guid: 6e295d8ea8b207343a8501a456a9845e,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.9518349
-      objectReference: {fileID: 0}
-    - target: {fileID: 3398412665079766768, guid: 6e295d8ea8b207343a8501a456a9845e,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.9518349
-      objectReference: {fileID: 0}
-    - target: {fileID: 3398412665079766768, guid: 6e295d8ea8b207343a8501a456a9845e,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.9518349
-      objectReference: {fileID: 0}
-    - target: {fileID: 3398412665079766287, guid: 6e295d8ea8b207343a8501a456a9845e,
-        type: 3}
-      propertyPath: parts.SailMaterial
-      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6e295d8ea8b207343a8501a456a9845e, type: 3}

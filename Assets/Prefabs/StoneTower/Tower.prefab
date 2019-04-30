@@ -415,6 +415,7 @@ GameObject:
   - component: {fileID: 8631112576944415675}
   - component: {fileID: 8631112576943121305}
   - component: {fileID: 8631112576941990233}
+  - component: {fileID: 3527109083294957807}
   m_Layer: 0
   m_Name: Tower
   m_TagString: Untagged
@@ -482,6 +483,20 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!64 &3527109083294957807
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8631112576944193435}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 1
+  m_CookingOptions: 14
+  m_Mesh: {fileID: 4300008, guid: 75737c26136edf645be1f92649294c29, type: 3}
 --- !u!1001 &3150849930320720398
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -489,6 +504,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 9172224438306551297}
     m_Modifications:
+    - target: {fileID: 3577739856495710687, guid: c9ab975a7aafc7c43ba66a8f8b676f09,
+        type: 3}
+      propertyPath: m_Name
+      value: Orb
+      objectReference: {fileID: 0}
     - target: {fileID: 3577739856495710686, guid: c9ab975a7aafc7c43ba66a8f8b676f09,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -543,11 +563,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3577739856495710687, guid: c9ab975a7aafc7c43ba66a8f8b676f09,
-        type: 3}
-      propertyPath: m_Name
-      value: Orb
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c9ab975a7aafc7c43ba66a8f8b676f09, type: 3}

@@ -277,7 +277,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &294135051
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1898,17 +1898,17 @@ PrefabInstance:
     - target: {fileID: 6736877464791588475, guid: bfd60bf94591b2147b80bb8e1730b30d,
         type: 3}
       propertyPath: fleets.Array.data[5].numberOfShips
-      value: 80
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 6736877464791588475, guid: bfd60bf94591b2147b80bb8e1730b30d,
         type: 3}
       propertyPath: fleets.Array.data[5].fleetPosition.x
-      value: 0
+      value: -75
       objectReference: {fileID: 0}
     - target: {fileID: 6736877464791588475, guid: bfd60bf94591b2147b80bb8e1730b30d,
         type: 3}
       propertyPath: fleets.Array.data[5].fleetPosition.z
-      value: 0
+      value: 75
       objectReference: {fileID: 0}
     - target: {fileID: 6736877464791588475, guid: bfd60bf94591b2147b80bb8e1730b30d,
         type: 3}
