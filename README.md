@@ -9,3 +9,5 @@ With the project being largely inspired by world of warcrafts battle for azeroth
 A video can be seen below:
 
 [![Pirates Cove](https://img.youtube.com/vi/rcGfEd7WlaM/0.jpg)](https://www.youtube.com/watch?v=rcGfEd7WlaM)
+
+A more detailed documentation may be found in Procedural_Content_Generation_Assignment.pdf
