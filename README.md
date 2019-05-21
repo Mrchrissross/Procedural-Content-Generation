@@ -11,3 +11,5 @@ A video can be seen below:
 [![Pirates Cove](https://img.youtube.com/vi/rcGfEd7WlaM/0.jpg)](https://www.youtube.com/watch?v=rcGfEd7WlaM)
 
 A more detailed documentation may be found in Procedural_Content_Generation_Assignment.pdf
+
+[link text](https://github.com/Mrchrissross/Procedural-Content-Generation/blob/master/Procedural_Content_Generation_Assignment.pdf "Procedural_Content_Generation_Assignment.pdf")
